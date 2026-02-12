@@ -1,0 +1,66 @@
+{
+  "name": "antigravity-icons-supercharged",
+  "displayName": "Antigravity Icons Supercharged",
+  "description": "A fork from miguelsolorio/vscode-symbols, main icons used in Antigravity. Mainly created for personnal use.",
+  "version": "1.0.0",
+  "publisher": "davidbabel",
+  "engines": {
+    "vscode": "^1.5.0"
+  },
+  "scripts": {
+    "patch": "vsce publish patch",
+    "icons": "imagemin icons/* --out-dir=icons",
+    "sync-vendor": "git submodule update --remote --merge",
+    "build": "rm -rf ./build && bun scripts/build.ts",
+    "package": "bun run build && vsce package",
+    "test": "exit 0"
+  },
+  "categories": [
+    "Other",
+    "Themes"
+  ],
+  "contributes": {
+    "iconThemes": [
+      {
+        "id": "antigravity-icons-supercharged",
+        "label": "Antigravity Icons Supercharged",
+        "path": "./build/symbol-icon-theme.json"
+      }
+    ]
+  },
+  "icon": "images/antigravity-icons-supercharged_icon.png",
+  "galleryBanner": {
+    "color": "#e0e0e0",
+    "theme": "light"
+  },
+  "keywords": [
+    "antigravity",
+    "react",
+    "angular",
+    "icons",
+    "icon",
+    "theme",
+    "icon-theme",
+    "customization"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DavidBabel/antigravity-icons-supercharged.git"
+  },
+  "author": {
+    "email": "babel.david@gmail.com",
+    "name": "David Babel",
+    "url": "https://github.com/DavidBabel/antigravity-icons-supercharged"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DavidBabel/antigravity-icons-supercharged/issues"
+  },
+  "homepage": "https://github.com/DavidBabel/antigravity-icons-supercharged#readme",
+  "dependencies": {
+    "vsce": "^2.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "^25.2.3"
+  }
+}

@@ -1,0 +1,16 @@
+.editorconfig
+.gitignore
+.gitmodules
+.vscodeignore
+.vscode
+node_modules
+scripts
+override
+vscode-symbols
+images
+file-types
+bun.lock
+CHANGELOG.md
+CONTRIBUTING.md
+tsconfig.json
+\#previous

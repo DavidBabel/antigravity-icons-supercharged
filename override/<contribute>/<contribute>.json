@@ -1,0 +1,11 @@
+{
+  // rename this file and add the fields you need
+  // you can inspire on the `symbol-icon-theme.json` content for the formats
+  // also consider to add a `file-types` folder or file with the files you want to add icons for
+  "iconDefinitions": {},
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {},
+  "folderNamesExpanded": {}
+}

@@ -1,0 +1,3 @@
+[submodule "vscode-symbols"]
+	path = vscode-symbols
+	url = https://github.com/miguelsolorio/vscode-symbols.git

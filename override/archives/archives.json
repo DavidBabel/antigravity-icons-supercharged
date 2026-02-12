@@ -1,0 +1,29 @@
+{
+  "iconDefinitions": {
+    "archive": {
+      "iconPath": "./icons/files/archive.png"
+    }
+  },
+  "fileExtensions": {
+    "zip": "archive",
+    "rar": "archive",
+    "7z": "archive",
+    "tar": "archive",
+    "gz": "archive",
+    "bz2": "archive",
+    "xz": "archive",
+    "iso": "archive",
+    "dmg": "archive",
+    "apk": "archive",
+    "deb": "archive",
+    "rpm": "archive",
+    "jar": "archive",
+    "war": "archive",
+    "ear": "archive",
+    "zipx": "archive"
+  },
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {},
+  "folderNamesExpanded": {}
+}

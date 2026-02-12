@@ -1,0 +1,15 @@
+{
+  "iconDefinitions": {
+    "npm-full": {
+      "iconPath": "./icons/files/npm-full.png"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "package.json": "npm-full",
+    "package-lock.json": "npm-full"
+  },
+  "languageIds": {},
+  "folderNames": {},
+  "folderNamesExpanded": {}
+}
