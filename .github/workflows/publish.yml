@@ -2,9 +2,9 @@ name: Publish Extension
 
 on:
   push:
-    branches:
-      - main
-      - master
+    tags:
+      - "v*"
+  workflow_dispatch:
 
 jobs:
   publish:
@@ -26,7 +26,15 @@ jobs:
         run: bun run package
 
       - name: Publish to VS Code Marketplace
-        run: bunx vsce publish -p ${{ secrets.VSCE_PAT }} --packagePath build/*.vsix
+        run: |
+          for file in build/*.vsix; do
+            echo "Publishing $file..."
+            bunx vsce publish -p ${{ secrets.VSCE_PAT }} --packagePath "$file"
+          done
 
       - name: Publish to Open VSX Registry
-        run: bunx ovsx publish -p ${{ secrets.OVSX_PAT }} --packagePath build/*.vsix
+        run: |
+          for file in build/*.vsix; do
+            echo "Publishing $file..."
+            bunx ovsx publish -p ${{ secrets.OVSX_PAT }} --packagePath "$file"
+          done

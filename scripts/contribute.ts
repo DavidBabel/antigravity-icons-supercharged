@@ -1,0 +1,188 @@
+import fs from "node:fs";
+import path from "node:path";
+import { createInterface } from "node:readline";
+
+const rl = createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+const ask = (query: string): Promise<string> =>
+  new Promise((resolve) => rl.question(query, resolve));
+
+// Colors
+const colors = {
+  reset: "\x1b[0m",
+  green: "\x1b[32m",
+  blue: "\x1b[34m",
+  yellow: "\x1b[33m",
+  red: "\x1b[31m",
+  cyan: "\x1b[36m",
+  bold: "\x1b[1m",
+};
+
+const emojis = {
+  folder: "📁",
+  file: "📄",
+  sparkles: "✨",
+  check: "✅",
+  cross: "❌",
+  rocket: "🚀",
+  question: "❓",
+};
+
+async function main() {
+  console.log(
+    `\n${colors.cyan}${colors.bold}${emojis.rocket}  Welcome to Antigravity Icons Contributor Script!${colors.reset}\n`,
+  );
+
+  const folderNameStr = await ask(
+    `${colors.yellow}${emojis.question}  Enter the name of the folder to create: ${colors.reset}`,
+  );
+  const folderName = folderNameStr.trim();
+
+  if (!folderName) {
+    console.log(
+      `${colors.red}${emojis.cross}  Folder name is required!${colors.reset}`,
+    );
+    rl.close();
+    process.exit(1);
+  }
+
+  console.log(`\n${colors.blue}What would you like to do?${colors.reset}`);
+  console.log(`1. Add new file icons ${colors.green}(add new)${colors.reset}`);
+  console.log(
+    `2. Associate existing file icons ${colors.yellow}(existing)${colors.reset}`,
+  );
+  console.log(
+    `3. Add new folder icons ${colors.green}(add new)${colors.reset}`,
+  );
+  console.log(
+    `4. Associate existing folder icons ${colors.yellow}(existing)${colors.reset}`,
+  );
+  console.log(
+    `5. Associate both - files and folders ${colors.yellow}(existing)${colors.reset}`,
+  );
+  console.log(
+    `6. Create both - new files and folders ${colors.green}(add new)${colors.reset}`,
+  );
+  console.log(
+    `7. I don't know ${colors.blue}(same as option 3)${colors.reset}`,
+  );
+
+  const choiceStr = await ask(
+    `\n${colors.cyan}Select an option (1-7): ${colors.reset}`,
+  );
+
+  rl.close();
+
+  const choiceNum = parseInt(choiceStr.trim());
+
+  if (isNaN(choiceNum) || choiceNum < 1 || choiceNum > 7) {
+    console.log(`${colors.red}${emojis.cross}  Invalid choice!${colors.reset}`);
+    process.exit(1);
+  }
+
+  const rootDir = process.cwd();
+  const overrideDir = path.join(rootDir, "override");
+  const templateDir = path.join(overrideDir, "<contribute>");
+  const targetDir = path.join(overrideDir, folderName);
+
+  if (fs.existsSync(targetDir)) {
+    console.log(
+      `${colors.red}${emojis.cross}  Directory ${folderName} already exists in override/!${colors.reset}`,
+    );
+    process.exit(1);
+  }
+
+  // Copy
+  console.log(`\n${colors.blue}Creating directory...${colors.reset}`);
+  try {
+    fs.cpSync(templateDir, targetDir, { recursive: true });
+  } catch (e) {
+    console.error(`${colors.red}Failed to copy directory: ${e}${colors.reset}`);
+    process.exit(1);
+  }
+
+  // Rename json
+  const oldJson = path.join(targetDir, "<contribute>.json");
+  const newJson = path.join(targetDir, `${folderName}.json`);
+
+  if (fs.existsSync(oldJson)) {
+    fs.renameSync(oldJson, newJson);
+  }
+
+  // Paths to potential deletions
+  const filesDir = path.join(targetDir, "files");
+  const foldersDir = path.join(targetDir, "folders");
+  const sampleFile = path.join(targetDir, "<test_file_with_your_icon>.<ext>");
+  const sampleFolder = path.join(targetDir, "<test_folder_with_your_icon>");
+
+  // Logic mapping
+  const finalChoice = choiceNum === 7 ? 3 : choiceNum;
+
+  // Cleanup helper
+  const remove = (p: string) => {
+    if (fs.existsSync(p)) fs.rmSync(p, { recursive: true, force: true });
+  };
+
+  switch (finalChoice) {
+    case 1: // Files (add new)
+      console.log(
+        `${colors.yellow}Setting up for new file icons...${colors.reset}`,
+      );
+      remove(foldersDir);
+      remove(sampleFolder);
+      break;
+    case 2: // Files (existing)
+      console.log(
+        `${colors.yellow}Setting up for existing file icon association...${colors.reset}`,
+      );
+      remove(foldersDir);
+      remove(filesDir);
+      remove(sampleFolder);
+      remove(sampleFile);
+      break;
+    case 3: // Folders (add new)
+      console.log(
+        `${colors.yellow}Setting up for new folder icons...${colors.reset}`,
+      );
+      remove(filesDir);
+      remove(sampleFile);
+      break;
+    case 4: // Folders (existing)
+      console.log(
+        `${colors.yellow}Setting up for existing folder icon association...${colors.reset}`,
+      );
+      remove(foldersDir);
+      remove(filesDir);
+      remove(sampleFolder);
+      remove(sampleFile);
+      break;
+    case 5: // Both (existing)
+      console.log(
+        `${colors.yellow}Setting up for existing icon associations...${colors.reset}`,
+      );
+      remove(foldersDir);
+      remove(filesDir);
+      remove(sampleFolder);
+      remove(sampleFile);
+      break;
+    case 6: // Both (add new)
+      console.log(`${colors.yellow}Setting up for new icons...${colors.reset}`);
+      // Keep everything
+      break;
+  }
+
+  console.log(
+    `\n${colors.green}${colors.bold}${emojis.check}  Done! Created ${folderName} in override/.${colors.reset}`,
+  );
+  console.log(
+    `${colors.green}  Please check ${newJson} in the override/${folderName} directory to configure your icons.${colors.reset}\n`,
+  );
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
