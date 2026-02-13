@@ -1,0 +1,19 @@
+{
+  "iconDefinitions": {
+    "key": {
+      "iconPath": "./icons/files/key.svg"
+    },
+    "apache": {
+      "iconPath": "./icons/files/apache.svg"
+    }
+  },
+  "fileExtensions": {
+    "key": "key",
+    "cert": "key"
+  },
+  "fileNames": {
+    ".htaccess": "apache"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}

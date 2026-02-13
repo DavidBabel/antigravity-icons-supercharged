@@ -1,0 +1,14 @@
+{
+  "iconDefinitions": {
+    "vscode-icon": {
+      "iconPath": "./icons/files/vscode-icon.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "settings.json": "vscode-icon",
+    "tsconfig.json": "vscode-icon"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}

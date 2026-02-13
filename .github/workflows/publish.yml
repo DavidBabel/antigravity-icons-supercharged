@@ -1,0 +1,32 @@
+name: Publish Extension
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Package extension
+        run: bun run package
+
+      - name: Publish to VS Code Marketplace
+        run: bunx vsce publish -p ${{ secrets.VSCE_PAT }} --packagePath build/*.vsix
+
+      - name: Publish to Open VSX Registry
+        run: bunx ovsx publish -p ${{ secrets.OVSX_PAT }} --packagePath build/*.vsix

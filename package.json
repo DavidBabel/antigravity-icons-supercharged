@@ -1,34 +1,41 @@
 {
-  "name": "antigravity-icons-supercharged",
-  "displayName": "Antigravity Icons Supercharged",
-  "description": "A fork from miguelsolorio/vscode-symbols, main icons used in Antigravity. Mainly created for personnal use.",
+  "name": "antigravity-icons-supercharged-gray",
+  "displayName": "Antigravity Icons Supercharged - gray version",
+  "description": "⚡ A supercharged icon theme for VS Code and its forks. Built for collaboration and inspired by the core icons of the Antigravity IDE.",
   "version": "1.0.0",
   "publisher": "davidbabel",
+  "packageManager": "bun@1.1.20",
   "engines": {
-    "vscode": "^1.5.0"
+    "vscode": "^1.88.0",
+    "bun": ">=1.1.20"
   },
   "scripts": {
-    "patch": "vsce publish patch",
+    "preinstall": "npx only-allow bun",
     "icons": "imagemin icons/* --out-dir=icons",
     "sync-vendor": "git submodule update --remote --merge",
-    "build": "rm -rf ./build && bun scripts/build.ts",
-    "package": "bun run build && vsce package",
-    "test": "exit 0"
+    "build": "rm -rf ./build* && bun scripts/build.ts",
+    "package": "bun run build && mkdir -p build && cd build-gray && vsce package --out ../build && cd ../build-blue && vsce package --out ../build",
+    "test": "exit 0",
+    "prepare": "husky"
   },
   "categories": [
     "Other",
     "Themes"
   ],
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
   "contributes": {
     "iconThemes": [
       {
-        "id": "antigravity-icons-supercharged",
-        "label": "Antigravity Icons Supercharged",
-        "path": "./build/symbol-icon-theme.json"
+        "id": "antigravity-icons-supercharged-gray",
+        "label": "Antigravity Icons (gray)",
+        "path": "./symbol-icon-theme.json"
       }
     ]
   },
-  "icon": "images/antigravity-icons-supercharged_icon.png",
+  "icon": "images/icon-gray.png",
   "galleryBanner": {
     "color": "#e0e0e0",
     "theme": "light"
@@ -41,7 +48,9 @@
     "icon",
     "theme",
     "icon-theme",
-    "customization"
+    "customization",
+    "file-icon-theme",
+    "file icons"
   ],
   "repository": {
     "type": "git",
@@ -57,10 +66,17 @@
     "url": "https://github.com/DavidBabel/antigravity-icons-supercharged/issues"
   },
   "homepage": "https://github.com/DavidBabel/antigravity-icons-supercharged#readme",
-  "dependencies": {
-    "vsce": "^2.15.0"
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
   },
+  "dependencies": {},
   "devDependencies": {
-    "@types/node": "^25.2.3"
+    "@types/node": "^25.2.3",
+    "husky": "^9.1.7",
+    "ovsx": "^0.10.9",
+    "vsce": "^2.15.0"
   }
 }

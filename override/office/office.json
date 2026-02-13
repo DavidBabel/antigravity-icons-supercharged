@@ -1,0 +1,24 @@
+{
+  "iconDefinitions": {
+    "word": {
+      "iconPath": "./icons/files/word.svg"
+    },
+    "excel": {
+      "iconPath": "./icons/files/excel.svg"
+    },
+    "powerpoint": {
+      "iconPath": "./icons/files/powerpoint.svg"
+    }
+  },
+  "fileExtensions": {
+    "doc": "word",
+    "docx": "word",
+    "xls": "excel",
+    "xlsx": "excel",
+    "ppt": "powerpoint",
+    "pptx": "powerpoint"
+  },
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {}
+}

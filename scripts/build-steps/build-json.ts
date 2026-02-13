@@ -3,7 +3,7 @@ import path from "node:path";
 
 const BASE_JSON = "vscode-symbols/src/symbol-icon-theme.json";
 const OVERRIDE_DIR = "override";
-const BUILD_DIR = "build";
+const BUILD_DIR = "build-gray";
 const DEST_JSON = path.join(BUILD_DIR, "symbol-icon-theme.json");
 const DEST_FILES = path.join(BUILD_DIR, "icons", "files");
 const DEST_FOLDERS = path.join(BUILD_DIR, "icons", "folders");
@@ -26,8 +26,12 @@ async function buildJson() {
   if (fs.existsSync(OVERRIDE_DIR)) {
     const subdirs = fs.readdirSync(OVERRIDE_DIR).filter((item) => {
       const itemPath = path.join(OVERRIDE_DIR, item);
-      // We only care about directories that are not 'src' (if it exists)
-      return fs.statSync(itemPath).isDirectory() && item !== "src";
+      // We only care about directories that are not 'src' or '<contribute>'
+      return (
+        fs.statSync(itemPath).isDirectory() &&
+        item !== "src" &&
+        item !== "<contribute>"
+      );
     });
 
     for (const subdir of subdirs) {
@@ -67,8 +71,15 @@ async function buildJson() {
           path.join(subdirPath, jsonFile),
           "utf8",
         );
-        // Strip comments (simple regex for // comments)
-        const cleanJsonContent = jsonContent.replace(/\/\/.*$/gm, "");
+        // Strip comments (line and block)
+        const cleanJsonContent = jsonContent
+          .replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "")
+          .trim();
+
+        if (!cleanJsonContent) {
+          console.log(`  \x1b[90m⏭️  Skipping empty JSON: ${jsonFile}\x1b[0m`);
+          continue;
+        }
 
         try {
           const overrideContent = JSON.parse(cleanJsonContent);
@@ -87,6 +98,11 @@ async function buildJson() {
 }
 
 function mergeTheme(target: any, source: any) {
+  // Skip if source is empty
+  if (Object.keys(source).length === 0) {
+    return;
+  }
+
   for (const key in source) {
     if (Object.prototype.hasOwnProperty.call(source, key)) {
       if (

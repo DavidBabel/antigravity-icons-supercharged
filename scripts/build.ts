@@ -6,6 +6,8 @@ const scripts = [
   "build-files",
   "build-folders",
   "import-file-types",
+  "build-copy-files",
+  "build-blue",
 ];
 
 scripts.forEach((script) => {

@@ -2,18 +2,17 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SRC_DIRS = ["vscode-symbols/src/icons/folders", "override/src/folders"];
-const DEST_DIR = "build/icons/folders";
+const DEST_DIR = "build-gray/icons/folders";
 
 const FOLDER_COLOR = "#64748B"; // Slate-500
 const CLOSED_FOLDER_PATH = `<path d="M7.78388 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V9.875C21 8.77043 20.1046 7.875 19 7.875H12.7161C12.2531 7.875 11.8044 7.71435 11.4466 7.42045L9.05336 5.45455C8.69558 5.16065 8.2469 5 7.78388 5Z" stroke="#64748B" stroke-width="2" style="fill: rgb(100, 116, 139);" mask="url(#decoupe)"/>`;
 
-// Ensure destination directory exists and is empty
-if (fs.existsSync(DEST_DIR)) {
-  fs.rmSync(DEST_DIR, { recursive: true, force: true });
+// Ensure destination directory exists
+if (!fs.existsSync(DEST_DIR)) {
+  fs.mkdirSync(DEST_DIR, { recursive: true });
 }
-fs.mkdirSync(DEST_DIR, { recursive: true });
 
-const DEST_JSON = "build/symbol-icon-theme.json";
+const DEST_JSON = "build-gray/symbol-icon-theme.json";
 
 async function processIcons() {
   const generatedClosedIcons: string[] = [];
@@ -27,10 +26,15 @@ async function processIcons() {
 
     for (const file of files) {
       const srcPath = path.join(srcDir, file);
+      const destPath = path.join(DEST_DIR, file);
+
+      // If file already exists (e.g. copied by build-json from overrides), don't overwrite it
+      if (fs.existsSync(destPath)) continue;
+
       const content = fs.readFileSync(srcPath, "utf8");
 
       // Pass 1: Copy Original
-      fs.writeFileSync(path.join(DEST_DIR, file), content);
+      fs.writeFileSync(destPath, content);
 
       // Pass 2: Generate Closed Variant
       // Only if it looks like a folder icon (contains the folder color)
@@ -78,6 +82,7 @@ function updateThemeJson(closedIcons: string[]) {
 
   // 3. Update default folder icon
   theme.folder = "folder-closed";
+  theme.folderExpanded = "folder";
 
   fs.writeFileSync(DEST_JSON, JSON.stringify(theme, null, 2));
   console.log(
@@ -91,8 +96,6 @@ function generateClosedVariant(svgContent: string): string | null {
   const cleanSvg = svgContent.replace(/\r?\n|\r/g, " ");
 
   // Match the folder path
-  // We look for a path tag that contains the folder color
-  // This regex is a bit greedy but should work for these specific files
   const folderPathRegex =
     /<path[^>]*?(?:fill|stroke)="[^"]*64748B[^"]*"[^>]*\/?>/i;
 
@@ -109,18 +112,6 @@ function generateClosedVariant(svgContent: string): string | null {
       return null;
     }
   }
-
-  // Extract parts
-  // 1. Everything before the first path (Header)
-  // 2. The Folder Path (To replace)
-  // 3. The Other Elements (To keep and use for mask)
-  // 4. Closing SVG tag
-
-  // Since we can't reliably parse "Other Elements" with regex if they are complex,
-  // we will:
-  // 1. Identify valid Folder Path String.
-  // 2. Remove it from the full string.
-  // 3. Extract the inner content of <svg>...</svg> from what remains.
 
   // Get the full folder path string found
   const folderPathString = match
@@ -146,57 +137,82 @@ function generateClosedVariant(svgContent: string): string | null {
     .replace(svgCloseRegex, "")
     .trim();
 
-  // Prepare Mask Content (Clone of Other Elements)
-  // We want to create a silhouette-like mask that cuts out the folder.
-  // Logic:
-  // 1. If element has fill color -> fill="black"
-  // 2. If element has stroke -> stroke="black"
-  // 3. Stroke width -> Increased to Create Gap (e.g. 4px)
-  // 4. If fill="none" -> keep fill="none" (Important for line icons)
+  // Extract Definitions (<defs> and <mask>) to avoid duplication
+  const definitions: string[] = [];
 
+  // Extract <defs>...</defs>
+  const defsRegex = /<defs>([\s\S]*?)<\/defs>/gi;
+  let defsMatch;
+  while ((defsMatch = defsRegex.exec(innerContent)) !== null) {
+    definitions.push(defsMatch[1]);
+  }
+  innerContent = innerContent.replace(defsRegex, "");
+
+  // Extract <mask...>...</mask>
+  // Note: This matches top-level masks effectively if they are siblings to other elements
+  const maskRegex = /<mask[^>]*>([\s\S]*?)<\/mask>/gi;
+  let maskMatch;
+  while ((maskMatch = maskRegex.exec(innerContent)) !== null) {
+    definitions.push(maskMatch[0]);
+  }
+  innerContent = innerContent.replace(maskRegex, "");
+
+  // Extract <filter...>...</filter> (if they appear outside defs)
+  const filterRegex = /<filter[^>]*>([\s\S]*?)<\/filter>/gi;
+  let filterMatch;
+  while ((filterMatch = filterRegex.exec(innerContent)) !== null) {
+    definitions.push(filterMatch[0]);
+  }
+  innerContent = innerContent.replace(filterRegex, "");
+
+  // Prepare Mask Content (Clone of Visual Elements)
   let maskInner = innerContent;
 
   // Replace fill="<Color>" with fill="black", but keep fill="none"
-  // Using a callback to check the value
   maskInner = maskInner.replace(/fill="([^"]*)"/gi, (match, value) => {
-    if (value.toLowerCase() === "none") return match; // Keep fill="none"
+    if (value.toLowerCase() === "none") return match;
     return 'fill="black"';
   });
 
   // Replace stroke="<Color>" with stroke="black"
-  // If stroke="none", we might want to keep it?
-  // But usually we want to expand the shape so we probably want stroke="black" even if it was none?
-  // Actually if it was fill-only (no stroke), adding a stroke increases the mask size (gap).
-  // So yes, usually we want to enforce stroke.
-  // However, simply replacing existing strokes is safer for now.
   maskInner = maskInner.replace(/stroke="[^"]*"/gi, 'stroke="black"');
 
-  // Remove stroke-width so it inherits from the group (where we set it to 4)
-  maskInner = maskInner.replace(/stroke-width="[^"]*"/gi, "");
+  // Replace stroke-width with 6 to create a wider mask for outlines
+  // This ensures the gap is consistent (~2px) for both filled (inheriting 4) and outline icons
+  maskInner = maskInner.replace(/stroke-width="[^"]*"/gi, 'stroke-width="6"');
 
-  // Remove style attributes just in case
+  // Remove style attributes
   maskInner = maskInner.replace(/\sstyle="[^"]*"/gi, "");
 
-  // Wrap in a group that sets the common mask properties
-  // We set stroke="black" and stroke-width="4" to ensure everything gets the border gap.
-  // We do NOT set fill="black" here, allowing the inner elements to control fill (or inherit none).
-  const maskGroup = `<g stroke="black" stroke-width="4">${maskInner}</g>`;
+  // Remove mask, filter, opacity, clip-path to ensure clean silhouette
+  maskInner = maskInner.replace(/\smask="[^"]*"/gi, "");
+  maskInner = maskInner.replace(/\sfilter="[^"]*"/gi, "");
+  maskInner = maskInner.replace(/\sopacity="[^"]*"/gi, "");
+  maskInner = maskInner.replace(/\sclip-path="[^"]*"/gi, "");
 
-  if (innerContent.length === 0) {
-    // If there are no other elements (just a plain folder), no mask needed
-    // Just return the closed folder shape alone
+  // Wrap in a group that sets the common mask properties
+  // We add a central circle to ensure the middle is cut out (good for outline icons)
+  // User requested "3 par 3" (radius 3) at bottom right (approx 20, 16 based on other icons)
+  const maskGroup = `<g stroke="black" stroke-width="4">${maskInner}<circle cx="20" cy="16" r="3" fill="black" stroke="none" /></g>`;
+
+  if (innerContent.length === 0 && definitions.length === 0) {
     return `${header}${CLOSED_FOLDER_PATH.replace('mask="url(#decoupe)"', "")}</svg>`;
   }
 
+  // Combine definitions
+  const allDefs = definitions.join("");
+
   const maskDef = `
     <defs>
+        ${allDefs}
         <mask id="decoupe">
             <rect width="100%" height="100%" fill="white" />
             ${maskGroup}
         </mask>
     </defs>`;
 
-  // Reassemble
+  // Reassemble: Header + Definitions/Masks + Folder Path + Visual Content
+  // Note: We put allDefs inside the main defs block with the coupe mask
   return `${header}${maskDef}${CLOSED_FOLDER_PATH}${innerContent}</svg>`;
 }
 

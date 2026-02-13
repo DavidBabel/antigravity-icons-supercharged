@@ -1,0 +1,18 @@
+{
+  "iconDefinitions": {
+    "travis": {
+      "iconPath": "./icons/files/travis.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "travis.yml": "travis",
+    ".travis.yml": "travis",
+    "travis.yaml": "travis",
+    ".travis.yaml": "travis"
+  },
+  "languageIds": {},
+  "folderNames": {
+    "ci": "folder-yellow-outline"
+  }
+}

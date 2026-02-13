@@ -1,0 +1,12 @@
+#!/bin/sh
+# Bump minor version (creates commit and tag)
+# The [skip ci] in the message prevents this commit from triggering a CI loop,
+# but the tag push will still trigger the publish workflow.
+bun version minor -m "Bump version to %s [skip ci]"
+
+# Push changes including tags
+# --no-verify skpis the pre-push hook to prevent an infinite loop
+git push --follow-tags --no-verify
+
+# Exit 0
+exit 0

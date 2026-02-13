@@ -1,0 +1,14 @@
+{
+  // rename this file and add the fields you need
+  // it will be merged with the others icons
+  // check other override to understand how it works
+  // once done :
+  // turn this file into a .json file & remove the comments
+  "iconDefinitions": {},
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  // Note: only target folder without the "-closed" suffix, it will be added automatically
+  "folderNames": {}
+  // add a file/folder with this name `file-types` to be able to test it
+}

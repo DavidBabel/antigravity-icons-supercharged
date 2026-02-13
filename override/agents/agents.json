@@ -1,0 +1,22 @@
+{
+  "iconDefinitions": {},
+  "fileExtensions": {},
+  "fileNames": {
+    "AGENT.md": "robot",
+    "AGENTS.md": "robot",
+    "agent.md": "robot",
+    "agents.md": "robot",
+    ".windsurfrules": "robot",
+    ".windsurfcontext": "robot",
+    "copilot-instructions": "robot",
+    ".copilot-instructions": "robot",
+    "antigravity.md": "robot",
+    "gemini.md": "robot",
+    ".ai.md": "robot",
+    ".env.ai": "robot",
+    ".instructions.md": "robot",
+    "mcp-config.json": "robot"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}

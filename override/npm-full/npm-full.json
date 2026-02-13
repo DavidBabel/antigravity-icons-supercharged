@@ -1,7 +1,7 @@
 {
   "iconDefinitions": {
     "npm-full": {
-      "iconPath": "./icons/files/npm-full.png"
+      "iconPath": "./icons/files/npm-full.svg"
     }
   },
   "fileExtensions": {},
@@ -10,6 +10,5 @@
     "package-lock.json": "npm-full"
   },
   "languageIds": {},
-  "folderNames": {},
-  "folderNamesExpanded": {}
+  "folderNames": {}
 }
