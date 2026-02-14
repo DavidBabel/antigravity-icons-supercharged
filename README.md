@@ -46,7 +46,7 @@ I added some new icons, [feel free to suggest more](https://github.com/DavidBabe
 
 Pretty agentic files displays :
 
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agents-preview.png" alt="agents-preview" width="220"><br><br>
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agents-preview-gray.png" alt="agents-preview" width="220"><br><br>
 
 # Acknowledgments
 
