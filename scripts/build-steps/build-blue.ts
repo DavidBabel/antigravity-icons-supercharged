@@ -146,31 +146,6 @@ function renameFilesAndFolders(directory: string) {
 console.log(`  🏷️  Renaming files and folders...`);
 renameFilesAndFolders(DEST_DIR);
 
-// 4. Replace [PROMO_COLORS] in READMEs
-const PROMO_TEXT =
-  "There is two versions of the theme, a **blue one** and a **gray one** check what is your favorite.";
-const PLACEHOLDER = "[PROMO_COLORS]";
-const README_FILES = [
-  path.join(SRC_DIR, "README.md"),
-  path.join(DEST_DIR, "README.md"),
-];
-
-console.log(`  📝 Updating README promo text...`);
-for (const readmePath of README_FILES) {
-  if (fs.existsSync(readmePath)) {
-    let content = fs.readFileSync(readmePath, "utf8");
-    if (content.includes(PLACEHOLDER)) {
-      content = content.replace(PLACEHOLDER, PROMO_TEXT);
-      fs.writeFileSync(readmePath, content);
-      console.log(`    ✅ Updated ${readmePath}`);
-    } else {
-      console.log(`    ⚠️ Placeholder not found in ${readmePath}`);
-    }
-  } else {
-    console.log(`    ⚠️ ${readmePath} not found`);
-  }
-}
-
 console.log(
   `✅ Blue variant generated! Processed ${processedFiles} files, modified ${replacedCount} files.\n`,
 );

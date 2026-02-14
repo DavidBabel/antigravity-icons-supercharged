@@ -2,7 +2,7 @@
   "name": "antigravity-icons-supercharged-gray",
   "displayName": "Antigravity Icons Supercharged - gray version",
   "description": "⚡ A supercharged icon theme for VS Code and its forks. Built for collaboration and inspired by the core icons of the Antigravity IDE.",
-  "version": "0.5.0",
+  "version": "0.1.0",
   "publisher": "davidbabel",
   "packageManager": "bun@1.1.20",
   "engines": {
@@ -11,15 +11,15 @@
   },
   "scripts": {
     "preinstall": "npx only-allow bun",
+    "postinstall": "git submodule init && git submodule update",
     "contrib": "bun scripts/contribute.ts",
-    "icons": "imagemin icons/* --out-dir=icons",
     "sync-vendor": "git submodule update --remote --merge",
     "build": "rm -rf ./build* && bun scripts/build.ts",
     "package": "bash scripts/package.sh",
     "lint": "bash scripts/lint.sh",
     "format": "biome check --write .",
-    "test": "bun run lint && bun run package",
-    "prepare": "husky"
+    "test": "bun run lint",
+    "release": "bash scripts/release.sh"
   },
   "categories": [
     "Other",
@@ -79,7 +79,6 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.15",
     "@types/node": "^25.2.3",
-    "husky": "^9.1.7",
     "ovsx": "^0.10.9",
     "vsce": "^2.15.0"
   }
