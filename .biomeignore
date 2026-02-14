@@ -1,0 +1,8 @@
+vscode-symbols/**
+vscode-symbols/biome.json
+build/**
+build-blue/**
+build-gray/**
+node_modules/**
+file-types/**
+override/**

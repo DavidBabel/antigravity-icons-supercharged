@@ -1,4 +1,4 @@
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/header-gray.png" alt="Antigravity Icons Supercharged gray" width="460">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/header-blank.png" alt="Antigravity Icons Supercharged blank" width="460">
 
 A fork from [miguelsolorio/vscode-symbols](https://github.com/miguelsolorio/vscode-symbols), main icons used in **[Antigravity](https://antigravity.google/)** (the fork of [vscode](https://github.com/microsoft/vscode) made by [Google](https://github.com/google)).
 

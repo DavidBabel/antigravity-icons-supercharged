@@ -26,28 +26,28 @@
 */
 
 class Bread {
-	constructor(slices) {
-		this.slices = 12;
+  constructor(slices) {
+    this.slices = 12;
 
-		if (slices > this.slices) {
-			console.log("not enough bread");
-		} else {
-			console.log(slices);
-		}
-	}
+    if (slices > this.slices) {
+      console.log("not enough bread");
+    } else {
+      console.log(slices);
+    }
+  }
 }
 
 class Sandwich extends Bread {
-	constructor(slices) {
-		this.bread = super(slices);
-		this.toppings = [];
-	}
+  constructor(slices) {
+    this.bread = super(slices);
+    this.toppings = [];
+  }
 
-	toppings(ingredients) {
-		ingredients.forEach(function (value, index) {
-			this.toppings.push(value);
-		});
-	}
+  toppings(ingredients) {
+    ingredients.forEach(function (value, index) {
+      this.toppings.push(value);
+    });
+  }
 }
 
 var Club = new Sandwich(3).toppings(["roast beef", "turkey"]);
@@ -63,7 +63,7 @@ var Club = new Sandwich(3).toppings(["roast beef", "turkey"]);
 */
 
 var myName = "Slim Shady",
-	template = "Hello, my name is ${myName}";
+  template = "Hello, my name is ${myName}";
 
 /*
 
@@ -79,7 +79,7 @@ var myName = "Slim Shady",
 */
 
 function testFunction(string, arr, obj) {
-	// DO SOMETHING
+  // DO SOMETHING
 }
 
 testFunction("one", "two", [1, 2, 3], { key: "value" });
@@ -99,17 +99,17 @@ import { ham as turkey } from "mySandwich.js";
 var isFunction;
 
 switch (typeof testFunction) {
-	case "function":
-		isFunction = true;
-		break;
-	default:
-		isFunction = false;
+  case "function":
+    isFunction = true;
+    break;
+  default:
+    isFunction = false;
 }
 
 try {
-	testFunction();
+  testFunction();
 } catch (e) {
-	throw "Whoopsadaisy!";
+  throw "Whoopsadaisy!";
 } finally {
-	console.log("i think we're done here!");
+  console.log("i think we're done here!");
 }

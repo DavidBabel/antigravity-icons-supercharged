@@ -1,0 +1,87 @@
+name: Sync Vendor (vscode-symbols)
+
+on:
+  schedule:
+    - cron: "0 18 * * 0" # Every Sunday at 18:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check-and-sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Get current vendor version
+        id: current
+        run: |
+          VERSION=$(git -C vscode-symbols describe --tags --abbrev=0 2>/dev/null || echo "none")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Current submodule version: $VERSION"
+
+      - name: Get latest release from upstream
+        id: latest
+        run: |
+          LATEST=$(curl -s https://api.github.com/repos/miguelsolorio/vscode-symbols/releases/latest | jq -r '.tag_name')
+          echo "version=$LATEST" >> "$GITHUB_OUTPUT"
+          echo "Latest upstream release: $LATEST"
+
+      - name: Check if update is needed
+        id: check
+        run: |
+          echo "Current: ${{ steps.current.outputs.version }}"
+          echo "Latest:  ${{ steps.latest.outputs.version }}"
+          if [ "${{ steps.current.outputs.version }}" = "${{ steps.latest.outputs.version }}" ]; then
+            echo "needs_update=false" >> "$GITHUB_OUTPUT"
+            echo "✅ Already up to date"
+          else
+            echo "needs_update=true" >> "$GITHUB_OUTPUT"
+            echo "🔄 Update available"
+          fi
+
+      - name: Update submodule to latest release
+        if: steps.check.outputs.needs_update == 'true'
+        run: |
+          cd vscode-symbols
+          git fetch --tags
+          git checkout "${{ steps.latest.outputs.version }}"
+          cd ..
+
+      - name: Setup Bun
+        if: steps.check.outputs.needs_update == 'true'
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        if: steps.check.outputs.needs_update == 'true'
+        run: bun install
+
+      - name: Run tests
+        if: steps.check.outputs.needs_update == 'true'
+        run: bun run test
+
+      - name: Create Pull Request
+        if: steps.check.outputs.needs_update == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update vscode-symbols to ${{ steps.latest.outputs.version }}"
+          branch: "update-vscode-symbols-${{ steps.latest.outputs.version }}"
+          title: "⬆️ Update vscode-symbols to ${{ steps.latest.outputs.version }}"
+          body: |
+            Automated update of the `vscode-symbols` vendor dependency.
+
+            **Current version:** `${{ steps.current.outputs.version }}`
+            **New version:** `${{ steps.latest.outputs.version }}`
+
+            Release: https://github.com/miguelsolorio/vscode-symbols/releases/tag/${{ steps.latest.outputs.version }}
+
+            ---
+            ✅ Tests have passed with the new version.
+          labels: dependencies

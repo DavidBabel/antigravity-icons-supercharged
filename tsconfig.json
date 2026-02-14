@@ -3,15 +3,11 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "types": [
-      "node"
-    ],
+    "types": ["node"],
     "strict": true,
     "skipLibCheck": true,
     "noEmit": true,
     "allowImportingTsExtensions": true
   },
-  "include": [
-    "scripts/**/*"
-  ]
+  "include": ["scripts/**/*"]
 }

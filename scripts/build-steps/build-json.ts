@@ -97,6 +97,7 @@ async function buildJson() {
   console.log(`\x1b[32m\x1b[1m✅ Successfully built ${DEST_JSON}\x1b[0m`);
 }
 
+// biome-ignore lint/suspicious/noExplicitAny: Generic merge function needed for flexible JSON merging
 function mergeTheme(target: any, source: any) {
   // Skip if source is empty
   if (Object.keys(source).length === 0) {
@@ -104,7 +105,7 @@ function mergeTheme(target: any, source: any) {
   }
 
   for (const key in source) {
-    if (Object.prototype.hasOwnProperty.call(source, key)) {
+    if (Object.hasOwn(source, key)) {
       if (
         typeof source[key] === "object" &&
         source[key] !== null &&

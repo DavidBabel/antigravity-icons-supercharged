@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 const SRC_FILE = "scripts/build-files-list";
 const DEST_DIRS = ["build-gray"];
@@ -42,7 +42,14 @@ for (const destDir of DEST_DIRS) {
       if (!fs.existsSync(targetDir)) {
         fs.mkdirSync(targetDir, { recursive: true });
       }
-      fs.copyFileSync(srcPath, targetPath);
+
+      if (fileName === "README.md") {
+        let content = fs.readFileSync(srcPath, "utf8");
+        content = content.replace(/blank\.png/g, "gray.png");
+        fs.writeFileSync(targetPath, content);
+      } else {
+        fs.copyFileSync(srcPath, targetPath);
+      }
       copiedCount++;
     } else {
       console.warn(`⚠️  File not found: ${srcPath}`);

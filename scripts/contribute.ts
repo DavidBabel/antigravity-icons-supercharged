@@ -19,6 +19,7 @@ const colors = {
   red: "\x1b[31m",
   cyan: "\x1b[36m",
   bold: "\x1b[1m",
+  gray: "\x1b[90m",
 };
 
 const emojis = {
@@ -36,64 +37,62 @@ async function main() {
     `\n${colors.cyan}${colors.bold}${emojis.rocket}  Welcome to Antigravity Icons Contributor Script!${colors.reset}\n`,
   );
 
-  const folderNameStr = await ask(
-    `${colors.yellow}${emojis.question}  Enter the name of the folder to create: ${colors.reset}`,
-  );
-  const folderName = folderNameStr.trim();
+  const rootDir = process.cwd();
+  const overrideDir = path.join(rootDir, "override");
+  let folderName = "";
+  let targetDir = "";
 
-  if (!folderName) {
-    console.log(
-      `${colors.red}${emojis.cross}  Folder name is required!${colors.reset}`,
+  while (true) {
+    const folderNameStr = await ask(
+      `${colors.yellow}${emojis.question}  Enter the name of the folder to create (default: contrib): ${colors.reset}`,
     );
-    rl.close();
-    process.exit(1);
+    folderName = folderNameStr.trim() || "contrib";
+    targetDir = path.join(overrideDir, folderName);
+
+    if (fs.existsSync(targetDir)) {
+      console.log(
+        `${colors.red}${emojis.cross}  Directory ${folderName} already exists in override/! Please choose another name.${colors.reset}`,
+      );
+      continue;
+    }
+    break;
   }
 
   console.log(`\n${colors.blue}What would you like to do?${colors.reset}`);
-  console.log(`1. Add new file icons ${colors.green}(add new)${colors.reset}`);
+
+  console.log(`${colors.yellow}# Associate existing icons${colors.reset}`);
+  console.log(`1. Associate existing ${colors.bold}files${colors.reset} icons`);
   console.log(
-    `2. Associate existing file icons ${colors.yellow}(existing)${colors.reset}`,
+    `2. Associate existing ${colors.bold}folders${colors.reset} icons`,
   );
   console.log(
-    `3. Add new folder icons ${colors.green}(add new)${colors.reset}`,
-  );
-  console.log(
-    `4. Associate existing folder icons ${colors.yellow}(existing)${colors.reset}`,
-  );
-  console.log(
-    `5. Associate both - files and folders ${colors.yellow}(existing)${colors.reset}`,
-  );
-  console.log(
-    `6. Create both - new files and folders ${colors.green}(add new)${colors.reset}`,
-  );
-  console.log(
-    `7. I don't know ${colors.blue}(same as option 3)${colors.reset}`,
+    `3. Associate both - ${colors.bold}files${colors.reset} and ${colors.bold}folders${colors.reset}`,
   );
 
+  console.log(`${colors.green}# Add new icons${colors.reset}`);
+  console.log(`4. Add new ${colors.bold}files${colors.reset} icons`);
+  console.log(`5. Add new ${colors.bold}folders${colors.reset} icons`);
+  console.log(
+    `6. Create both - new ${colors.bold}files${colors.reset} and ${colors.bold}folders${colors.reset}`,
+  );
+
+  console.log(`${colors.gray}# Other${colors.reset}`);
+  console.log(`7. I don't know`);
+
   const choiceStr = await ask(
-    `\n${colors.cyan}Select an option (1-7): ${colors.reset}`,
+    `\n${colors.cyan}Select an option (1-7) [default: 7]: ${colors.reset}`,
   );
 
   rl.close();
 
-  const choiceNum = parseInt(choiceStr.trim());
+  const choiceNum =
+    choiceStr.trim() === "" ? 7 : parseInt(choiceStr.trim(), 10);
 
-  if (isNaN(choiceNum) || choiceNum < 1 || choiceNum > 7) {
-    console.log(`${colors.red}${emojis.cross}  Invalid choice!${colors.reset}`);
+  if (Number.isNaN(choiceNum) || choiceNum < 1 || choiceNum > 7) {
     process.exit(1);
   }
 
-  const rootDir = process.cwd();
-  const overrideDir = path.join(rootDir, "override");
   const templateDir = path.join(overrideDir, "<contribute>");
-  const targetDir = path.join(overrideDir, folderName);
-
-  if (fs.existsSync(targetDir)) {
-    console.log(
-      `${colors.red}${emojis.cross}  Directory ${folderName} already exists in override/!${colors.reset}`,
-    );
-    process.exit(1);
-  }
 
   // Copy
   console.log(`\n${colors.blue}Creating directory...${colors.reset}`);
@@ -119,7 +118,7 @@ async function main() {
   const sampleFolder = path.join(targetDir, "<test_folder_with_your_icon>");
 
   // Logic mapping
-  const finalChoice = choiceNum === 7 ? 3 : choiceNum;
+  const finalChoice = choiceNum === 7 ? 5 : choiceNum;
 
   // Cleanup helper
   const remove = (p: string) => {
@@ -127,45 +126,45 @@ async function main() {
   };
 
   switch (finalChoice) {
-    case 1: // Files (add new)
-      console.log(
-        `${colors.yellow}Setting up for new file icons...${colors.reset}`,
-      );
-      remove(foldersDir);
-      remove(sampleFolder);
-      break;
-    case 2: // Files (existing)
+    case 1: // Files (existing)
       console.log(
         `${colors.yellow}Setting up for existing file icon association...${colors.reset}`,
       );
       remove(foldersDir);
       remove(filesDir);
       remove(sampleFolder);
-      remove(sampleFile);
+      // Keep sampleFile
       break;
-    case 3: // Folders (add new)
-      console.log(
-        `${colors.yellow}Setting up for new folder icons...${colors.reset}`,
-      );
-      remove(filesDir);
-      remove(sampleFile);
-      break;
-    case 4: // Folders (existing)
+    case 2: // Folders (existing)
       console.log(
         `${colors.yellow}Setting up for existing folder icon association...${colors.reset}`,
       );
       remove(foldersDir);
       remove(filesDir);
-      remove(sampleFolder);
+      // Keep sampleFolder
       remove(sampleFile);
       break;
-    case 5: // Both (existing)
+    case 3: // Both (existing)
       console.log(
         `${colors.yellow}Setting up for existing icon associations...${colors.reset}`,
       );
       remove(foldersDir);
       remove(filesDir);
       remove(sampleFolder);
+      remove(sampleFile);
+      break;
+    case 4: // Files (add new)
+      console.log(
+        `${colors.yellow}Setting up for new file icons...${colors.reset}`,
+      );
+      remove(foldersDir);
+      remove(sampleFolder);
+      break;
+    case 5: // Folders (add new)
+      console.log(
+        `${colors.yellow}Setting up for new folder icons...${colors.reset}`,
+      );
+      remove(filesDir);
       remove(sampleFile);
       break;
     case 6: // Both (add new)

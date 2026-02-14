@@ -114,14 +114,16 @@ function generateClosedVariant(svgContent: string): string | null {
   }
 
   // Get the full folder path string found
-  const folderPathString = match
-    ? match[0]
-    : cleanSvg.match(
-        /<path[^>]*?(?:fill|stroke)="rgb\(100,\s*116,\s*139\)"[^>]*\/?>/i,
-      )![0];
+  const folderPathString =
+    match?.[0] ||
+    cleanSvg.match(
+      /<path[^>]*?(?:fill|stroke)="rgb\(100,\s*116,\s*139\)"[^>]*\/?>/i,
+    )?.[0];
+
+  if (!folderPathString) return null;
 
   // Remove the folder path from the content
-  let remainingContent = cleanSvg.replace(folderPathString, "");
+  const remainingContent = cleanSvg.replace(folderPathString, "");
 
   // Extract content between <svg ...> and </svg>
   const svgTagRegex = /<svg[^>]*>/;
@@ -142,26 +144,29 @@ function generateClosedVariant(svgContent: string): string | null {
 
   // Extract <defs>...</defs>
   const defsRegex = /<defs>([\s\S]*?)<\/defs>/gi;
-  let defsMatch;
-  while ((defsMatch = defsRegex.exec(innerContent)) !== null) {
+  let defsMatch = defsRegex.exec(innerContent);
+  while (defsMatch !== null) {
     definitions.push(defsMatch[1]);
+    defsMatch = defsRegex.exec(innerContent);
   }
   innerContent = innerContent.replace(defsRegex, "");
 
   // Extract <mask...>...</mask>
   // Note: This matches top-level masks effectively if they are siblings to other elements
   const maskRegex = /<mask[^>]*>([\s\S]*?)<\/mask>/gi;
-  let maskMatch;
-  while ((maskMatch = maskRegex.exec(innerContent)) !== null) {
+  let maskMatch = maskRegex.exec(innerContent);
+  while (maskMatch !== null) {
     definitions.push(maskMatch[0]);
+    maskMatch = maskRegex.exec(innerContent);
   }
   innerContent = innerContent.replace(maskRegex, "");
 
   // Extract <filter...>...</filter> (if they appear outside defs)
   const filterRegex = /<filter[^>]*>([\s\S]*?)<\/filter>/gi;
-  let filterMatch;
-  while ((filterMatch = filterRegex.exec(innerContent)) !== null) {
+  let filterMatch = filterRegex.exec(innerContent);
+  while (filterMatch !== null) {
     definitions.push(filterMatch[0]);
+    filterMatch = filterRegex.exec(innerContent);
   }
   innerContent = innerContent.replace(filterRegex, "");
 
