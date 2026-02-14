@@ -18,6 +18,7 @@ rm /tmp/.release-version
 git add -A
 git commit -m "release: v$VERSION"
 git tag "v$VERSION"
-git push origin HEAD --follow-tags
+git push origin HEAD
+git push origin "v$VERSION"
 
 echo "✅ Release v$VERSION pushed — publish workflow will trigger on tag v$VERSION"
