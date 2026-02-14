@@ -4,16 +4,16 @@
 
 A fork from [vscode-symbols](https://github.com/miguelsolorio/vscode-symbols), main icons used in <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/google-icon.png" alt="google-icon" width="16"> **[Antigravity](https://antigravity.google/)** (the fork of [vscode](https://github.com/microsoft/vscode) made by [Google](https://github.com/google)).
 
-_If youmiss an icon, feel free to **[contribute](https://github.com/DavidBabel/antigravity-icons-supercharged/blob/main/CONTRIBUTE.md)**, I made it **very easy** to do._
+_If you are missing an icon, feel free to **[contribute](https://github.com/DavidBabel/antigravity-icons-supercharged/blob/main/CONTRIBUTE.md)**, I made it **very easy** to do._
 
-⭐ Check also this amazing productivity extension : [clever-vscode](https://marketplace.visualstudio.com/items?itemName=davidbabel.clever) ⭐
+⭐ Check also this amazing productivity extension : [🧠 Clever VSCode](https://marketplace.visualstudio.com/items?itemName=davidbabel.clever) ⭐<br>
 Trust me, you might love it ❤️
 
 ## Preview
 
 💎Premium display of <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular.png" alt="angular" width="16"> **Angular** files. <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-service.png" alt="angular-service" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-pipe.png" alt="angular-pipe" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-module.png" alt="angular-module" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-component.png" alt="angular-component" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-guard.png" alt="angular-guard" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-directive.png" alt="angular-directive" width="16">
 
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-gray.gif" alt="preview-gray" width="230"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-blue.gif" alt="preview-blue" width="259">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-grey.gif" alt="preview-grey" width="230"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-blue.gif" alt="preview-blue" width="230">
 
 This theme is available in two colors : 🔘 **grey** or 🔵 **blue**.<br>
 Don't hesitate to switch colors with the command palette : `Preferences: Color Theme`.
@@ -22,7 +22,7 @@ Don't hesitate to switch colors with the command palette : `Preferences: Color T
 
 ## Inherited from the [amazing base theme](https://github.com/miguelsolorio/vscode-symbols) of Miguel Solorio
 
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/origin.png" alt="folder" width="520">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/origin.png" alt="folder" >
 
 ## Folded folder status icons
 
@@ -46,7 +46,7 @@ I added some new icons, [feel free to suggest more](https://github.com/DavidBabe
 
 Pretty agentic files displays :
 
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agents-preview.png" alt="agents-preview" width="24">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agents-preview.png" alt="agents-preview" width="220"><br><br>
 
 # Acknowledgments
 
