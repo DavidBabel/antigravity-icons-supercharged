@@ -11,7 +11,7 @@ Trust me, you might love it ❤️
 
 ## Preview
 
-💎Premium display of <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular.png" alt="angular" width="24"> **Angular** files. <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-service.png" alt="angular-service" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-pipe.png" alt="angular-pipe" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-module.png" alt="angular-module" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-component.png" alt="angular-component" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-guard.png" alt="angular-guard" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-directive.png" alt="angular-directive" width="24">
+💎Premium display of <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular.png" alt="angular" width="16"> **Angular** files. <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-service.png" alt="angular-service" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-pipe.png" alt="angular-pipe" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-module.png" alt="angular-module" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-component.png" alt="angular-component" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-guard.png" alt="angular-guard" width="16"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/angular/angular-directive.png" alt="angular-directive" width="16">
 
 <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-gray.gif" alt="preview-gray" width="230"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-blue.gif" alt="preview-blue" width="259">
 
@@ -46,7 +46,7 @@ I added some new icons, [feel free to suggest more](https://github.com/DavidBabe
 
 Pretty agentic files displays :
 
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agent-preview.png" alt="agent-preview" width="24">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agents-preview.png" alt="agents-preview" width="24">
 
 # Acknowledgments
 
