@@ -165,3 +165,18 @@ if (fs.existsSync(readmePath)) {
     console.log(`  🔗 Fixed Gray Marketplace link in ${readmePath}`);
   }
 }
+
+// 5. Deduplicate keys in symbol-icon-theme.json
+const themePath = path.join(DEST_DIR, "symbol-icon-theme.json");
+if (fs.existsSync(themePath)) {
+  const content = fs.readFileSync(themePath, "utf8");
+  try {
+    const json = JSON.parse(content);
+    // Stringify with 2 spaces indentation to remove duplicate keys
+    const newContent = JSON.stringify(json, null, 2);
+    fs.writeFileSync(themePath, newContent);
+    console.log(`  🧹 Deduplicated keys in ${themePath}`);
+  } catch (error) {
+    console.error(`  ❌ Error parsing JSON in ${themePath}:`, error);
+  }
+}
