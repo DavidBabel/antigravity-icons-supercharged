@@ -37,5 +37,7 @@ Pretty agentic files & Images displays :
 
 - [miguelsolorio/vscode-symbols](https://github.com/miguelsolorio/vscode-symbols)
   - [Figma ressource](https://www.figma.com/design/HYLMyRbIdSbIJQlqnd9pSN/Symbols---File-Icons?node-id=20521-84115&p=f)
+- [pheralb/react-symbols](https://github.com/pheralb/react-symbols)
+  - [Website](https://react-symbols.pheralb.dev/)
 - [vscode](https://github.com/microsoft/vscode)
 - [Antigravity](https://antigravity.google/)
