@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { createInterface } from "node:readline";
@@ -118,7 +119,7 @@ async function main() {
   const sampleFolder = path.join(targetDir, "<test_folder_with_your_icon>");
 
   // Logic mapping
-  const finalChoice = choiceNum === 7 ? 5 : choiceNum;
+  const finalChoice = choiceNum === 7 ? 6 : choiceNum;
 
   // Cleanup helper
   const remove = (p: string) => {
@@ -179,6 +180,18 @@ async function main() {
   console.log(
     `${colors.green}  Please check ${newJson} in the override/${folderName} directory to configure your icons.${colors.reset}\n`,
   );
+
+  // Open the new json in Editor
+  try {
+    console.log(`${colors.blue}Opening file in editor...${colors.reset}`);
+    try {
+      execSync(`antigravity "${newJson}"`, { stdio: "inherit" });
+    } catch {
+      execSync(`code "${newJson}"`, { stdio: "inherit" });
+    }
+  } catch {
+    // If both 'antigravity' and 'code' commands fail, ignore silently
+  }
 }
 
 main().catch((err) => {
