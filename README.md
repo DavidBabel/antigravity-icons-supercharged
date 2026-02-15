@@ -16,11 +16,7 @@ Trust me, you might love it ❤️
 This theme is available in two colors : 🔘 **[grey](https://marketplace.visualstudio.com/items?itemName=davidbabel.antigravity-icons-supercharged-gray)** or 🔵 **[blue](https://marketplace.visualstudio.com/items?itemName=davidbabel.antigravity-icons-supercharged-blue)**. Download both to try them out!<br>
 All folders have a different icon style when open or closed : <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/folded/gray/folder-closed.png" alt="folder-closed" width="20"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/folded/gray/folder.png" alt="folder" width="20"> - <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/folded/gray/folder-config-closed.png" alt="folder-config-closed" width="20"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/folded/gray/folder-config.png" alt="folder-config" width="20">
 
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-grey.gif" alt="preview-grey" width="230"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-blue.gif" alt="preview-blue" width="230">
-
-Don't hesitate to switch colors with the command palette : `Preferences: Color Theme`.
-
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/switch-colors.gif" alt="switch-colors" width="150">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-grey.gif" alt="preview-grey" width="230"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/preview-blue.gif" alt="preview-blue" width="230"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/switch-colors.gif" alt="switch-colors" width="150">
 
 ## Inherited from the [amazing base theme](https://github.com/miguelsolorio/vscode-symbols) of Miguel Solorio
 
