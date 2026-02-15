@@ -31,6 +31,7 @@ Don't hesitate to switch colors with the command palette : `Preferences: Color T
 I added some new icons, [feel free to suggest more](https://github.com/DavidBabel/antigravity-icons-supercharged/blob/main/CONTRIBUTE.md) ! Here are some examples so far :
 
 <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/travis.png" alt="travis" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/npm-full.png" alt="npm-full" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/archive.png" alt="archive" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/key.png" alt="powerpoint" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/word.png" alt="word" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/excel.png" alt="excel" width="24"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/powerpoint.png" alt="powerpoint" width="24">
+<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/md.png" alt="md" width="180">
 
 Pretty agentic files displays :
 

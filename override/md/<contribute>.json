@@ -1,0 +1,17 @@
+{
+  "iconDefinitions": {
+    "contribute": {
+      "iconPath": "./icons/files/contribute.svg"
+    },
+    "changelog": {
+      "iconPath": "./icons/files/changelog.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "CONTRIBUTE.md": "contribute",
+    "CHANGELOG.md": "changelog"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}
