@@ -15,7 +15,8 @@
     ".ai.md": "robot",
     ".env.ai": "robot",
     ".instructions.md": "robot",
-    "mcp-config.json": "robot"
+    "mcp-config.json": "robot",
+    "SKILL.md": "robot"
   },
   "languageIds": {},
   "folderNames": {}
