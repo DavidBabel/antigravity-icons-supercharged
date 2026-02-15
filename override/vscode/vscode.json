@@ -6,6 +6,7 @@
   },
   "fileExtensions": {},
   "fileNames": {
+    "extensions.json": "vscode-icon",
     "settings.json": "vscode-icon",
     "tsconfig.json": "vscode-icon"
   },
