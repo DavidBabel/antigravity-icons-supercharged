@@ -1,7 +1,113 @@
 {
-  "iconDefinitions": {},
-  "fileExtensions": {},
-  "fileNames": {},
+  "iconDefinitions": {
+    "image-blue-theme": {
+      "iconPath": "./icons/files/image-blue-theme.svg"
+    },
+    "image-blue": {
+      "iconPath": "./icons/files/image-blue.svg"
+    },
+    "image-darkblue": {
+      "iconPath": "./icons/files/image-darkblue.svg"
+    },
+    "image-darkpurple": {
+      "iconPath": "./icons/files/image-darkpurple.svg"
+    },
+    "image-darkorange": {
+      "iconPath": "./icons/files/image-darkorange.svg"
+    },
+    "image-gray-theme": {
+      "iconPath": "./icons/files/image-gray-theme.svg"
+    },
+    "image-green": {
+      "iconPath": "./icons/files/image-green.svg"
+    },
+    "image-lightblue": {
+      "iconPath": "./icons/files/image-lightblue.svg"
+    },
+    "image-lightgray": {
+      "iconPath": "./icons/files/image-lightgray.svg"
+    },
+    "image-orange": {
+      "iconPath": "./icons/files/image-orange.svg"
+    },
+    "image-pink": {
+      "iconPath": "./icons/files/image-pink.svg"
+    },
+    "image-purple": {
+      "iconPath": "./icons/files/image-purple.svg"
+    },
+    "image-red": {
+      "iconPath": "./icons/files/image-red.svg"
+    },
+    "image-yellow": {
+      "iconPath": "./icons/files/image-yellow.svg"
+    },
+    "vector-blue-theme": {
+      "iconPath": "./icons/files/vector-blue-theme.svg"
+    },
+    "vector-blue": {
+      "iconPath": "./icons/files/vector-blue.svg"
+    },
+    "vector-darkblue": {
+      "iconPath": "./icons/files/vector-darkblue.svg"
+    },
+    "vector-darkpurple": {
+      "iconPath": "./icons/files/vector-darkpurple.svg"
+    },
+    "vector-darkorange": {
+      "iconPath": "./icons/files/vector-darkorange.svg"
+    },
+    "vector-gray-theme": {
+      "iconPath": "./icons/files/vector-gray-theme.svg"
+    },
+    "vector-green": {
+      "iconPath": "./icons/files/vector-green.svg"
+    },
+    "vector-lightblue": {
+      "iconPath": "./icons/files/vector-lightblue.svg"
+    },
+    "vector-lightgray": {
+      "iconPath": "./icons/files/vector-lightgray.svg"
+    },
+    "vector-orange": {
+      "iconPath": "./icons/files/vector-orange.svg"
+    },
+    "vector-pink": {
+      "iconPath": "./icons/files/vector-pink.svg"
+    },
+    "vector-purple": {
+      "iconPath": "./icons/files/vector-purple.svg"
+    },
+    "vector-red": {
+      "iconPath": "./icons/files/vector-red.svg"
+    },
+    "vector-yellow": {
+      "iconPath": "./icons/files/vector-yellow.svg"
+    },
+    "favicon": {
+      "iconPath": "./icons/files/favicon.svg"
+    }
+  },
+  "fileExtensions": {
+    "ai": "vector-yellow",
+    "cdr": "vector-blue",
+    "cgm": "vector-green",
+    "eps": "vector-darkorange",
+    "jpg": "image-orange",
+    "jpeg": "image-orange",
+    "jxl": "image-darkorange",
+    "pcx": "image-darkorange",
+    "png": "image-yellow",
+    "bmp": "image-green",
+    "webp": "image-blue",
+    "tiff": "image-purple",
+    "avif": "image-darkpurple",
+    "ico": "image-darkorange"
+  },
+  "fileNames": {
+    "favicon.ico": "favicon",
+    "Favicon.ico": "favicon"
+  },
   "languageIds": {},
   "folderNames": {
     "img": "folder-images",

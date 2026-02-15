@@ -149,3 +149,19 @@ renameFilesAndFolders(DEST_DIR);
 console.log(
   `✅ Blue variant generated! Processed ${processedFiles} files, modified ${replacedCount} files.\n`,
 );
+
+// 4. Fix Gray Marketplace link in README.md
+const readmePath = path.join(DEST_DIR, "README.md");
+if (fs.existsSync(readmePath)) {
+  let readmeContent = fs.readFileSync(readmePath, "utf8");
+  const target =
+    "**[grey](https://marketplace.visualstudio.com/items?itemName=davidbabel.antigravity-icons-supercharged-blue)**";
+  const replacement =
+    "**[grey](https://marketplace.visualstudio.com/items?itemName=davidbabel.antigravity-icons-supercharged-gray)**";
+
+  if (readmeContent.includes(target)) {
+    readmeContent = readmeContent.replace(target, replacement);
+    fs.writeFileSync(readmePath, readmeContent);
+    console.log(`  🔗 Fixed Gray Marketplace link in ${readmePath}`);
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "color-orange": {
+      "iconPath": "./icons/files/orange.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "colors.md": "color-orange"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}
