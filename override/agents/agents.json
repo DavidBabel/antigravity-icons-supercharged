@@ -1,5 +1,9 @@
 {
-  "iconDefinitions": {},
+  "iconDefinitions": {
+    "folder-agents": {
+      "iconPath": "./icons/folders/folder-agents.svg"
+    }
+  },
   "fileExtensions": {},
   "fileNames": {
     "AGENT.md": "robot",
@@ -19,5 +23,10 @@
     "SKILL.md": "robot"
   },
   "languageIds": {},
-  "folderNames": {}
+  "folderNames": {
+    "agents": "folder-agents",
+    ".agents": "folder-agents",
+    "agent": "folder-agents",
+    ".agent": "folder-agents"
+  }
 }

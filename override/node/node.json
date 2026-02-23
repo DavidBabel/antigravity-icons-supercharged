@@ -1,0 +1,14 @@
+{
+  "iconDefinitions": {
+    "folder-node-alt": {
+      "iconPath": "./icons/folders/folder-node-alt.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "node_modules": "folder-node-alt",
+    "node_modules_preview": "folder-node-alt"
+  }
+}

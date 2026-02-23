@@ -4,8 +4,17 @@ import path from "node:path";
 const SRC_DIRS = ["vscode-symbols/src/icons/folders", "override/src/folders"];
 const DEST_DIR = "build-gray/icons/folders";
 
-const FOLDER_COLOR = "#64748B"; // Slate-500
-const CLOSED_FOLDER_PATH = `<path d="M7.78388 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V9.875C21 8.77043 20.1046 7.875 19 7.875H12.7161C12.2531 7.875 11.8044 7.71435 11.4466 7.42045L9.05336 5.45455C8.69558 5.16065 8.2469 5 7.78388 5Z" stroke="#64748B" stroke-width="2" style="fill: rgb(100, 116, 139);" mask="url(#decoupe)"/>`;
+const FOLDER_PATHS_D = [
+  "M5 4C3.34315 4 2 5.34315 2 7V17C2 18.6569 3.34315 20 5 20H13V18H5C4.44772 18 4 17.5523 4 17V7C4 6.44772 4.44772 6 5 6H7.78388C8.01539 6 8.23973 6.08033 8.41862 6.22727L10.8119 8.19318C11.3486 8.63402 12.0216 8.875 12.7161 8.875H19C19.5523 8.875 20 9.32272 20 9.875V10H22V9.875C22 8.21815 20.6569 6.875 19 6.875H12.7161C12.4846 6.875 12.2603 6.79467 12.0814 6.64773L9.6881 4.68182C9.15142 4.24098 8.47841 4 7.78388 4H5Z",
+  "M5 4C3.34315 4 2 5.34315 2 7V17C2 18.6569 3.34315 20 5 20H14V18H5C4.44772 18 4 17.5523 4 17V7C4 6.44772 4.44772 6 5 6H7.78388C8.01539 6 8.23973 6.08033 8.41862 6.22727L10.8119 8.19318C11.3486 8.63402 12.0216 8.875 12.7161 8.875H19C19.5523 8.875 20 9.32272 20 9.875V10H22V9.875C22 8.21815 20.6569 6.875 19 6.875H12.7161C12.4846 6.875 12.2603 6.79467 12.0814 6.64773L9.6881 4.68182C9.15142 4.24098 8.47841 4 7.78388 4H5Z",
+  "M5 4C3.34315 4 2 5.34315 2 7V17C2 18.6569 3.34315 20 5 20H10V18H5C4.44772 18 4 17.5523 4 17V7C4 6.44772 4.44772 6 5 6H7.78388C8.01539 6 8.23973 6.08033 8.41862 6.22727L10.8119 8.19318C11.3486 8.63402 12.0216 8.875 12.7161 8.875H19C19.5523 8.875 20 9.32272 20 9.875V10H22V9.875C22 8.21815 20.6569 6.875 19 6.875H12.7161C12.4846 6.875 12.2603 6.79467 12.0814 6.64773L9.6881 4.68182C9.15142 4.24098 8.47841 4 7.78388 4H5Z",
+  "M5 4C3.34315 4 2 5.34315 2 7V17C2 18.6569 3.34315 20 5 20H12V18H5C4.44772 18 4 17.5523 4 17V7C4 6.44772 4.44772 6 5 6H7.78388C8.01539 6 8.23973 6.08033 8.41862 6.22727L10.8119 8.19318C11.3486 8.63402 12.0216 8.875 12.7161 8.875H19C19.5523 8.875 20 9.32272 20 9.875V10H22V9.875C22 8.21815 20.6569 6.875 19 6.875H12.7161C12.4846 6.875 12.2603 6.79467 12.0814 6.64773L9.6881 4.68182C9.15142 4.24098 8.47841 4 7.78388 4H5Z",
+  "M2 7C2 5.34315 3.34315 4 5 4H7.78388C8.47841 4 9.15142 4.24098 9.6881 4.68182L12.0814 6.64773C12.2603 6.79467 12.4846 6.875 12.7161 6.875H19C19.0887 6.875 19.1765 6.87885 19.2633 6.88639V8.91002C19.1794 8.88719 19.0911 8.875 19 8.875H12.7161C12.0216 8.875 11.3486 8.63402 10.8119 8.19318L8.41862 6.22727C8.23973 6.08033 8.01539 6 7.78388 6H5C4.44772 6 4 6.44772 4 7V17C4 17.5523 4.44772 18 5 18H13V20H5C3.34315 20 2 18.6569 2 17V7Z",
+  "M7.78418 4C8.4786 4.00007 9.15187 4.24086 9.68848 4.68164L12.0811 6.64746L12.2236 6.74512C12.3729 6.82963 12.5423 6.87495 12.7158 6.875H19C20.6569 6.875 22 8.21815 22 9.875V10H20V9.875C20 9.32272 19.5523 8.875 19 8.875H12.7158C12.1082 8.87494 11.5173 8.69005 11.0195 8.34863L10.8115 8.19336L8.41895 6.22754C8.24013 6.08065 8.01558 6.00007 7.78418 6H5C4.44772 6 4 6.44772 4 7V17C4 17.5523 4.44772 18 5 18H13V20H5C3.34315 20 2 18.6569 2 17V7C2 5.34315 3.34315 4 5 4H7.78418Z",
+  "M7.78388 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V9.875C21 8.77043 20.1046 7.875 19 7.875H12.7161C12.2531 7.875 11.8044 7.71435 11.4466 7.42045L9.05336 5.45455C8.69558 5.16065 8.2469 5 7.78388 5Z",
+];
+const CLOSED_FOLDER_PATH_D =
+  "M7.78388 5H5C3.89543 5 3 5.89543 3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V9.875C21 8.77043 20.1046 7.875 19 7.875H12.7161C12.2531 7.875 11.8044 7.71435 11.4466 7.42045L9.05336 5.45455C8.69558 5.16065 8.2469 5 7.78388 5Z";
 
 // Ensure destination directory exists
 if (!fs.existsSync(DEST_DIR)) {
@@ -44,11 +53,8 @@ async function processIcons() {
     const content = fs.readFileSync(destPath, "utf8");
 
     // Generate Closed Variant
-    // Only if it looks like a folder icon (contains the folder color)
-    if (
-      content.includes(FOLDER_COLOR) ||
-      content.includes("rgb(100, 116, 139)")
-    ) {
+    // Only if it looks like a folder icon (contains the base folder path definition)
+    if (FOLDER_PATHS_D.some((d) => content.includes(d))) {
       const closedName = file.replace(".svg", "-closed.svg");
       const closedContent = generateClosedVariant(content);
       if (closedContent) {
@@ -101,32 +107,40 @@ function generateClosedVariant(svgContent: string): string | null {
   // Remove newlines to simplify regex
   const cleanSvg = svgContent.replace(/\r?\n|\r/g, " ");
 
-  // Match the folder path
-  const folderPathRegex =
-    /<path[^>]*?(?:fill|stroke)="[^"]*64748B[^"]*"[^>]*\/?>/i;
+  // Match the folder path using its specific d attribute
+  const dVals = FOLDER_PATHS_D.map((d) =>
+    d.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+  ).join("|");
+  const folderPathRegex = new RegExp(
+    `<path[^>]*?d="(${dVals})"[^>]*\\/?>`,
+    "i",
+  );
 
   // Check if the folder path exists
   const match = cleanSvg.match(folderPathRegex);
   if (!match) {
-    // Fallback for rgb color format just in case
-    const folderPathRegexRgb =
-      /<path[^>]*?(?:fill|stroke)="rgb\(100,\s*116,\s*139\)"[^>]*\/?>/i;
-    if (!cleanSvg.match(folderPathRegexRgb)) {
-      console.warn(
-        `Could not find folder path in SVG (no #64748B): skipping closed variant.`,
-      );
-      return null;
+    console.warn(
+      `Could not find standard folder path in SVG: skipping closed variant.`,
+    );
+    return null;
+  }
+
+  const folderPathString = match[0];
+
+  // Extract color dynamically
+  let folderColor = "#64748B"; // Default fallback
+  const fillMatch = folderPathString.match(/fill="([^"]+)"/i);
+  if (fillMatch && fillMatch[1] !== "none") {
+    folderColor = fillMatch[1];
+  } else {
+    const strokeMatch = folderPathString.match(/stroke="([^"]+)"/i);
+    if (strokeMatch && strokeMatch[1] !== "none") {
+      folderColor = strokeMatch[1];
     }
   }
 
-  // Get the full folder path string found
-  const folderPathString =
-    match?.[0] ||
-    cleanSvg.match(
-      /<path[^>]*?(?:fill|stroke)="rgb\(100,\s*116,\s*139\)"[^>]*\/?>/i,
-    )?.[0];
-
-  if (!folderPathString) return null;
+  // Define closed folder path with extracted color
+  const closedFolderPath = `<path d="${CLOSED_FOLDER_PATH_D}" stroke="${folderColor}" stroke-width="2" fill="${folderColor}" mask="url(#decoupe)"/>`;
 
   // Remove the folder path from the content
   const remainingContent = cleanSvg.replace(folderPathString, "");
@@ -191,9 +205,9 @@ function generateClosedVariant(svgContent: string): string | null {
   // Clean up duplicated stroke="black" added when an element had both fill and stroke
   maskInner = maskInner.replace(/(stroke="black"\s*){2,}/gi, 'stroke="black" ');
 
-  // Replace stroke-width with 6 to create a wider mask for outlines
-  // This ensures the gap is consistent (~2px) for both filled (inheriting 4) and outline icons
-  maskInner = maskInner.replace(/stroke-width="[^"]*"/gi, 'stroke-width="6"');
+  // Replace stroke-width with 4 to create a wider mask for outlines
+  // This ensures a crisp gap without being too thick
+  maskInner = maskInner.replace(/stroke-width="[^"]*"/gi, 'stroke-width="4"');
 
   // Remove style attributes
   maskInner = maskInner.replace(/\sstyle="[^"]*"/gi, "");
@@ -216,12 +230,11 @@ function generateClosedVariant(svgContent: string): string | null {
   );
 
   // Wrap in a group that sets the common mask properties
-  // We add a central circle to ensure the middle is cut out (good for outline icons)
-  // User requested "3 par 3" (radius 3) at bottom right (approx 20, 16 based on other icons)
-  const maskGroup = `<g stroke="black" stroke-width="4">${maskInner}<circle cx="20" cy="16" r="3" fill="black" stroke="none" /></g>`;
+  // We use stroke-width="2.5" instead of 4 so that filled bodies do not get a massive transparent border
+  const maskGroup = `<g stroke="black" stroke-width="2.5">${maskInner}<circle cx="20" cy="16" r="3" fill="black" stroke="none" /></g>`;
 
   if (innerContent.length === 0 && definitions.length === 0) {
-    return `${header}${CLOSED_FOLDER_PATH.replace('mask="url(#decoupe)"', "")}</svg>`;
+    return `${header}${closedFolderPath.replace('mask="url(#decoupe)"', "")}</svg>`;
   }
 
   // Combine definitions
@@ -238,7 +251,7 @@ function generateClosedVariant(svgContent: string): string | null {
 
   // Reassemble: Header + Definitions/Masks + Folder Path + Visual Content
   // Note: We put allDefs inside the main defs block with the coupe mask
-  return `${header}${maskDef}${CLOSED_FOLDER_PATH}${innerContent}</svg>`;
+  return `${header}${maskDef}${closedFolderPath}${innerContent}</svg>`;
 }
 
 processIcons().catch(console.error);
