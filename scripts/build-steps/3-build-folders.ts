@@ -23,7 +23,9 @@ async function processIcons() {
   // Now, in addition to DEST_DIR, we must copy folders from original SRC_DIRS first
   for (const srcDir of SRC_DIRS) {
     if (!fs.existsSync(srcDir)) continue;
-    const files = fs.readdirSync(srcDir).filter((file) => file.endsWith(".svg"));
+    const files = fs
+      .readdirSync(srcDir)
+      .filter((file) => file.endsWith(".svg"));
     for (const file of files) {
       const srcPath = path.join(srcDir, file);
       const destPath = path.join(DEST_DIR, file);
