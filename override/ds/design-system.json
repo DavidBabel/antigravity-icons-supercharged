@@ -1,0 +1,14 @@
+{
+  "iconDefinitions": {
+    "folder-ds": {
+      "iconPath": "./icons/folders/folder-ds.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "ds": "folder-ds",
+    "design-system": "folder-ds"
+  }
+}

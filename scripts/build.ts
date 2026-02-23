@@ -2,12 +2,12 @@ import { execSync } from "node:child_process";
 import { join } from "node:path";
 
 const scripts = [
-  "build-json",
-  "build-files",
-  "build-folders",
-  "import-file-types",
-  "build-copy-files",
-  "build-blue",
+  "1-build-json",
+  "2-build-files",
+  "3-build-folders",
+  "4-import-file-types",
+  "5-build-copy-files",
+  "6-build-blue",
 ];
 
 scripts.forEach((script) => {

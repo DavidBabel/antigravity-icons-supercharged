@@ -17,37 +17,41 @@ const DEST_JSON = "build-gray/symbol-icon-theme.json";
 async function processIcons() {
   const generatedClosedIcons: string[] = [];
 
+  // Iterate over files already in the DEST_DIR (collected by build-json or copied previously)
+  if (!fs.existsSync(DEST_DIR)) return;
+
+  // Now, in addition to DEST_DIR, we must copy folders from original SRC_DIRS first
   for (const srcDir of SRC_DIRS) {
     if (!fs.existsSync(srcDir)) continue;
-
-    const files = fs
-      .readdirSync(srcDir)
-      .filter((file) => file.endsWith(".svg"));
-
+    const files = fs.readdirSync(srcDir).filter((file) => file.endsWith(".svg"));
     for (const file of files) {
       const srcPath = path.join(srcDir, file);
       const destPath = path.join(DEST_DIR, file);
+      if (!fs.existsSync(destPath)) {
+        fs.writeFileSync(destPath, fs.readFileSync(srcPath, "utf8"));
+      }
+    }
+  }
 
-      // If file already exists (e.g. copied by build-json from overrides), don't overwrite it
-      if (fs.existsSync(destPath)) continue;
+  const files = fs
+    .readdirSync(DEST_DIR)
+    .filter((file) => file.endsWith(".svg") && !file.endsWith("-closed.svg"));
 
-      const content = fs.readFileSync(srcPath, "utf8");
+  for (const file of files) {
+    const destPath = path.join(DEST_DIR, file);
+    const content = fs.readFileSync(destPath, "utf8");
 
-      // Pass 1: Copy Original
-      fs.writeFileSync(destPath, content);
-
-      // Pass 2: Generate Closed Variant
-      // Only if it looks like a folder icon (contains the folder color)
-      if (
-        content.includes(FOLDER_COLOR) ||
-        content.includes("rgb(100, 116, 139)")
-      ) {
-        const closedName = file.replace(".svg", "-closed.svg");
-        const closedContent = generateClosedVariant(content);
-        if (closedContent) {
-          fs.writeFileSync(path.join(DEST_DIR, closedName), closedContent);
-          generatedClosedIcons.push(closedName.replace(".svg", ""));
-        }
+    // Generate Closed Variant
+    // Only if it looks like a folder icon (contains the folder color)
+    if (
+      content.includes(FOLDER_COLOR) ||
+      content.includes("rgb(100, 116, 139)")
+    ) {
+      const closedName = file.replace(".svg", "-closed.svg");
+      const closedContent = generateClosedVariant(content);
+      if (closedContent) {
+        fs.writeFileSync(path.join(DEST_DIR, closedName), closedContent);
+        generatedClosedIcons.push(closedName.replace(".svg", ""));
       }
     }
   }
@@ -173,10 +177,10 @@ function generateClosedVariant(svgContent: string): string | null {
   // Prepare Mask Content (Clone of Visual Elements)
   let maskInner = innerContent;
 
-  // Replace fill="<Color>" with fill="black", but keep fill="none"
+  // Replace fill="<Color>" with fill="black" and add stroke="black" for outlines
   maskInner = maskInner.replace(/fill="([^"]*)"/gi, (match, value) => {
     if (value.toLowerCase() === "none") return match;
-    return 'fill="black"';
+    return 'fill="black" stroke="black"';
   });
 
   // Replace stroke="<Color>" with stroke="black"

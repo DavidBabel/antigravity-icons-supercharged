@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "folder-heart": {
+      "iconPath": "./icons/folders/folder-heart.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "health": "folder-heart"
+  }
+}

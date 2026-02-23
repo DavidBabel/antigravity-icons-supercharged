@@ -1,9 +1,13 @@
 {
-  "iconDefinitions": {},
+  "iconDefinitions": {
+    "folder-modules-bigger": {
+      "iconPath": "./icons/folders/folder-modules-bigger.svg"
+    }
+  },
   "fileExtensions": {},
   "fileNames": {},
   "languageIds": {},
   "folderNames": {
-    "packages": "folder-modules"
+    "packages": "folder-modules-bigger"
   }
 }
