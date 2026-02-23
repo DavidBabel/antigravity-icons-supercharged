@@ -188,6 +188,9 @@ function generateClosedVariant(svgContent: string): string | null {
   // Replace stroke="<Color>" with stroke="black"
   maskInner = maskInner.replace(/stroke="[^"]*"/gi, 'stroke="black"');
 
+  // Clean up duplicated stroke="black" added when an element had both fill and stroke
+  maskInner = maskInner.replace(/(stroke="black"\s*){2,}/gi, 'stroke="black" ');
+
   // Replace stroke-width with 6 to create a wider mask for outlines
   // This ensures the gap is consistent (~2px) for both filled (inheriting 4) and outline icons
   maskInner = maskInner.replace(/stroke-width="[^"]*"/gi, 'stroke-width="6"');
