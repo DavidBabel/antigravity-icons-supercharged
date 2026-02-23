@@ -199,6 +199,17 @@ function generateClosedVariant(svgContent: string): string | null {
   maskInner = maskInner.replace(/\sopacity="[^"]*"/gi, "");
   maskInner = maskInner.replace(/\sclip-path="[^"]*"/gi, "");
 
+  // Inject vector-effect="non-scaling-stroke" to preserve border thickness for scaled icons
+  maskInner = maskInner.replace(
+    /<(path|rect|circle|ellipse|polygon|polyline)([^>]*)>/gi,
+    (match, tag, attrs) => {
+      if (!attrs.includes("vector-effect")) {
+        return `<${tag} vector-effect="non-scaling-stroke"${attrs}>`;
+      }
+      return match;
+    },
+  );
+
   // Wrap in a group that sets the common mask properties
   // We add a central circle to ensure the middle is cut out (good for outline icons)
   // User requested "3 par 3" (radius 3) at bottom right (approx 20, 16 based on other icons)
