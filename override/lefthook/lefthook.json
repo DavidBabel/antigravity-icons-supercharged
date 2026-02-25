@@ -1,0 +1,14 @@
+{
+  "iconDefinitions": {
+    "lefthook": {
+      "iconPath": "./icons/files/lefthook.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "lefthook.yml": "lefthook",
+    "lefthook.yaml": "lefthook"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}
