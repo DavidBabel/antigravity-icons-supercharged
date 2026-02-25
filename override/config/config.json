@@ -6,5 +6,7 @@
   },
   "fileNames": {},
   "languageIds": {},
-  "folderNames": {}
+  "folderNames": {
+    "ts-config": "folder-config"
+  }
 }
