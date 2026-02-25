@@ -1,0 +1,14 @@
+{
+  "iconDefinitions": {
+    "folder-database-orange": {
+      "iconPath": "./icons/folders/folder-database-orange.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "store": "folder-database-orange",
+    "imdb": "folder-database-orange"
+  }
+}
