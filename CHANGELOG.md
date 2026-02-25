@@ -1,3 +1,7 @@
+## v0.6.3
+
+- update release script, improve changelog
+
 # Changelog
 
 ## v0.6.2
@@ -79,4 +83,3 @@
 - preparer for release and collab
 - multi build new extension version
 - first commit
-
