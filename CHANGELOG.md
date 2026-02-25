@@ -1,3 +1,10 @@
+## v0.6.4
+
+- add lefthook icons
+- update packages
+- add caching to github workflows
+- remove changelog title
+
 ## v0.6.3
 
 - update release script, improve changelog
