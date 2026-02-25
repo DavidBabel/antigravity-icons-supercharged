@@ -4,3 +4,4 @@ build-blue
 build-gray
 \#previous
 override/contrib
+*:Zone.Identifier

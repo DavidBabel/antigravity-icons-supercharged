@@ -1,0 +1,13 @@
+{
+  "iconDefinitions": {
+    "folder-infra": {
+      "iconPath": "./icons/folders/folder-infra.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "infra": "folder-infra"
+  }
+}

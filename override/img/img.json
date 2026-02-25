@@ -106,7 +106,9 @@
   },
   "fileNames": {
     "favicon.ico": "favicon",
-    "Favicon.ico": "favicon"
+    "Favicon.ico": "favicon",
+    "favicon.png": "favicon",
+    "Favicon.png": "favicon"
   },
   "languageIds": {},
   "folderNames": {
