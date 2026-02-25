@@ -58,6 +58,15 @@ jobs:
         with:
           bun-version: latest
 
+      - name: Cache bun dependencies
+        if: steps.check.outputs.needs_update == 'true'
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: ${{ runner.os }}-bun-${{ hashFiles('**/bun.lockb') }}
+          restore-keys: |
+            ${{ runner.os }}-bun-
+
       - name: Install dependencies
         if: steps.check.outputs.needs_update == 'true'
         run: bun install
