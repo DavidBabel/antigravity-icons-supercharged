@@ -202,16 +202,27 @@ function generateClosedVariant(svgContent: string): string | null {
   // Prepare Mask Content (Clone of Visual Elements)
   let maskInner = innerContent;
 
-  // Replace fill="<Color>" with fill="black" and add stroke="black" for outlines
+  // Replace fill="<Color>" with fill="black"
   maskInner = maskInner.replace(/fill="([^"]*)"/gi, (match, value) => {
     if (value.toLowerCase() === "none") return match;
-    return 'fill="black" stroke="black"';
+    return 'fill="black"';
   });
 
   // Replace stroke="<Color>" with stroke="black"
-  maskInner = maskInner.replace(/stroke="[^"]*"/gi, 'stroke="black"');
+  maskInner = maskInner.replace(/stroke="([^"]*)"/gi, (match, value) => {
+    if (value.toLowerCase() === "none") return match;
+    return 'stroke="black"';
+  });
 
-  // Clean up duplicated stroke="black" added when an element had both fill and stroke
+  // Add stroke="black" if it has fill="black" and no existing stroke attribute
+  maskInner = maskInner.replace(/<[^>]+>/gi, (match) => {
+    if (match.includes('fill="black"') && !match.includes('stroke=')) {
+        return match.replace('fill="black"', 'fill="black" stroke="black"');
+    }
+    return match;
+  });
+
+  // Clean up any weird duplicated stroke="black" that might have slipped through historically
   maskInner = maskInner.replace(/(stroke="black"\s*){2,}/gi, 'stroke="black" ');
 
   // Replace stroke-width with 4 to create a wider mask for outlines
