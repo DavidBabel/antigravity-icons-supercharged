@@ -28,6 +28,7 @@
     "agents": "folder-agents",
     ".agents": "folder-agents",
     "agent": "folder-agents",
-    ".agent": "folder-agents"
+    ".agent": "folder-agents",
+    "skills": "folder-agents"
   }
 }
