@@ -1,0 +1,18 @@
+{
+  "iconDefinitions": {
+    "queue": {
+      "iconPath": "./icons/files/queue.svg"
+    },
+    "folder-queues": {
+      "iconPath": "./folders/folder-pipes-gray.svg"
+    }
+  },
+  "fileExtensions": {
+    "queue.ts": "queue"
+  },
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "queues": "folder-queues"
+  }
+}

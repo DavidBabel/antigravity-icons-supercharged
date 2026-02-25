@@ -5,12 +5,16 @@
     },
     "changelog": {
       "iconPath": "./icons/files/changelog.svg"
+    },
+    "readme": {
+      "iconPath": "./icons/files/readme.svg"
     }
   },
   "fileExtensions": {},
   "fileNames": {
     "CONTRIBUTE.md": "contribute",
-    "CHANGELOG.md": "changelog"
+    "CHANGELOG.md": "changelog",
+    "README.md": "readme"
   },
   "languageIds": {},
   "folderNames": {}
