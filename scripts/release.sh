@@ -79,10 +79,32 @@ if ! bun run build; then
   exit 1
 fi
 
+# 1.6 Generate Changelog
+echo "📝 Generating changelog..."
+LAST_TAG=$(git describe --tags --abbrev=0 2>/dev/null)
+if [ -z "$LAST_TAG" ]; then
+  COMMITS=$(git log --pretty=format:"- %s" -E --invert-grep --grep="^release: v|lint" 2>/dev/null)
+else
+  COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" -E --invert-grep --grep="^release: v|lint" 2>/dev/null)
+fi
+
+CHANGELOG_ENTRY="## v$VERSION\n\n$COMMITS\n"
+
+if [ -f CHANGELOG.md ]; then
+  echo -e "$CHANGELOG_ENTRY\n$(cat CHANGELOG.md)" > CHANGELOG.md
+else
+  echo -e "# Changelog\n\n$CHANGELOG_ENTRY" > CHANGELOG.md
+fi
+
 # 2. Commit, tag, and push (tag push triggers publish workflow)
 git add -A
 git commit -m "release: v$VERSION"
-git tag "v$VERSION"
+
+# Create annotated tag with changelog content
+git tag -a "v$VERSION" -m "Release v$VERSION
+
+$COMMITS"
+
 git push origin HEAD
 git push origin "v$VERSION"
 
