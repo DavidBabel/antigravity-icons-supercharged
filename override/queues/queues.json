@@ -4,7 +4,7 @@
       "iconPath": "./icons/files/queue.svg"
     },
     "folder-queues": {
-      "iconPath": "./icons/folders/folder-pipes-gray.svg"
+      "iconPath": "./icons/folders/folder-pipes-grey.svg"
     }
   },
   "fileExtensions": {
@@ -13,6 +13,6 @@
   "fileNames": {},
   "languageIds": {},
   "folderNames": {
-    "queues": "folder-queues"
+    "queues": "folder-constants"
   }
 }
