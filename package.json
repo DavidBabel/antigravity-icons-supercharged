@@ -19,7 +19,9 @@
     "lint": "bash scripts/lint.sh",
     "format": "biome check --write .",
     "test": "bun run lint",
-    "release": "bash scripts/release.sh"
+    "release": "bash scripts/release.sh",
+    "install-ext": "bash scripts/install-ext.sh",
+    "refresh": "bun run package && bun run install-ext"
   },
   "categories": [
     "Other",
