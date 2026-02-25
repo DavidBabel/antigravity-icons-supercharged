@@ -2,8 +2,6 @@
 
 - update release script, improve changelog
 
-# Changelog
-
 ## v0.6.2
 
 - fix queues folders
