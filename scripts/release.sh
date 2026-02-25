@@ -88,7 +88,8 @@ else
   COMMITS=$(git log ${LAST_TAG}..HEAD --pretty=format:"- %s" -E --invert-grep --grep="^release: v|lint" 2>/dev/null)
 fi
 
-CHANGELOG_ENTRY="## v$VERSION\n\n$COMMITS\n"
+DATE=$(date +%Y-%m-%d)
+CHANGELOG_ENTRY="## v$VERSION ($DATE)\n\n$COMMITS\n"
 
 if [ -f CHANGELOG.md ]; then
   echo -e "$CHANGELOG_ENTRY\n$(cat CHANGELOG.md)" > CHANGELOG.md
