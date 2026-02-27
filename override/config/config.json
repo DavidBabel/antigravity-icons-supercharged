@@ -2,7 +2,9 @@
   "iconDefinitions": {},
   "fileExtensions": {
     "config": "gear",
-    "conf": "gear"
+    "conf": "gear",
+    "config.yaml": "gear",
+    "config.yml": "gear"
   },
   "fileNames": {},
   "languageIds": {},
