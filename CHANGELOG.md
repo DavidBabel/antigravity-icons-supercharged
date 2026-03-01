@@ -1,3 +1,12 @@
+## v0.7.0 (2026-03-01)
+
+- add templates config
+- add config yaml icon
+- add docker override
+- add dates to changelog
+- add imdb and store folder icon
+- add ts-config folder icon
+
 ## v0.6.4
 
 - add lefthook icons
