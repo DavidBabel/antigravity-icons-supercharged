@@ -1,3 +1,7 @@
+## v0.7.1 (2026-03-02)
+
+- add docker images
+
 ## v0.7.0 (2026-03-01)
 
 - add templates config
