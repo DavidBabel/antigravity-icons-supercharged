@@ -1,0 +1,22 @@
+{
+  "iconDefinitions": {
+    "docker-grey": {
+      "iconPath": "./icons/files/docker-grey.svg"
+    },
+    "docker-apple": {
+      "iconPath": "./icons/files/docker-apple.svg"
+    },
+    "docker-android": {
+      "iconPath": "./icons/files/docker-android.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {
+    "docker-compose.network.yaml": "docker-yellow",
+    "docker-compose.android.yaml": "docker-green",
+    "docker-compose.ios.yaml": "docker-grey",
+    "docker-compose.apple.yaml": "docker-grey"
+  },
+  "languageIds": {},
+  "folderNames": {}
+}
