@@ -1,3 +1,7 @@
+## v0.7.2 (2026-03-09)
+
+- add storage icon
+
 ## v0.7.1 (2026-03-02)
 
 - add docker images
