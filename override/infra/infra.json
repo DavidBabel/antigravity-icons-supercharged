@@ -2,9 +2,14 @@
   "iconDefinitions": {
     "folder-infra": {
       "iconPath": "./icons/folders/folder-infra.svg"
+    },
+    "storage": {
+      "iconPath": "./icons/files/storage.svg"
     }
   },
-  "fileExtensions": {},
+  "fileExtensions": {
+    "storage": "storage"
+  },
   "fileNames": {},
   "languageIds": {},
   "folderNames": {
