@@ -1,3 +1,7 @@
+## v0.8.0 (2026-08-20)
+
+- update dependency repo
+
 ## v0.7.2 (2026-03-09)
 
 - add storage icon
