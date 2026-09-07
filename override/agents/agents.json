@@ -13,6 +13,7 @@
     ".windsurfrules": "robot",
     ".windsurfcontext": "robot",
     "copilot-instructions": "robot",
+    "copilot-instructions.md": "robot",
     ".copilot-instructions": "robot",
     "antigravity.md": "robot",
     "gemini.md": "robot",
