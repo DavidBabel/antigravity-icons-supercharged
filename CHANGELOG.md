@@ -1,3 +1,9 @@
+## v0.9.1 (2026-09-07)
+
+- adjuste copilot instructions
+- fix exact version
+- fix changelog
+
 ## v0.9.0 (2026-08-20)
 
 - update dependency repo
