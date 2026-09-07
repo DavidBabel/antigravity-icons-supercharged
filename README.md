@@ -1,8 +1,12 @@
-<img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/header-blank.png" alt="Antigravity Icons Supercharged blank" width="460">
+<a href="https://marketplace.visualstudio.com/items?itemName=davidbabel.antigravity-icons-supercharged-blue"><img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/header-blank.png" alt="Antigravity Icons Supercharged blank" width="460"></a>
 
 # Antigravity Icons Supercharged
 
-A fork from [vscode-symbols](https://github.com/miguelsolorio/vscode-symbols), main icons used in <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/google-icon.png" alt="google-icon" width="16"> **[Antigravity](https://antigravity.google/)** (the fork of [vscode](https://github.com/microsoft/vscode) made by [Google](https://github.com/google)).
+🤔 Missing an Icon ? [It's dead simple to contribute](https://github.com/DavidBabel/antigravity-icons-supercharged/blob/main/CONTRIBUTE.md) 🤩
+
+Great quality SVG theme with small memory footprint.
+
+Big evolution of a fork from [vscode-symbols](https://github.com/miguelsolorio/vscode-symbols), main icons used in <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/google-icon.png" alt="google-icon" width="16"> **[Antigravity](https://antigravity.google/)** (the fork of [vscode](https://github.com/microsoft/vscode) made by [Google](https://github.com/google)).
 
 _If you are missing an icon, feel free to **[contribute](https://github.com/DavidBabel/antigravity-icons-supercharged/blob/main/CONTRIBUTE.md)**, I made it **very easy** to do._
 
@@ -31,7 +35,6 @@ I added some new icons, [feel free to suggest more](https://github.com/DavidBabe
 Pretty agentic files & Images displays :
 
 <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/images-1.png" alt="preview-images-1" width="180"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/images-2.png" alt="preview-images-2" width="180"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/agents/agents-preview-gray.png" alt="agents-preview" width="220"> <img src="https://raw.githubusercontent.com/DavidBabel/antigravity-icons-supercharged/main/images/preview/new-icons/md.png" alt="md" width="180">
-
 
 # Acknowledgments
 
