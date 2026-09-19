@@ -1,0 +1,33 @@
+{
+  "iconDefinitions": {
+    "folder-kanban": {
+      "iconPath": "./icons/folders/folder-kanban.svg"
+    },
+    "folder-kanban-backlog": {
+      "iconPath": "./icons/folders/folder-kanban-backlog.svg"
+    },
+    "folder-kanban-todo": {
+      "iconPath": "./icons/folders/folder-kanban-todo.svg"
+    },
+    "folder-kanban-inprogress": {
+      "iconPath": "./icons/folders/folder-kanban-inprogress.svg"
+    },
+    "folder-kanban-review": {
+      "iconPath": "./icons/folders/folder-kanban-review.svg"
+    },
+    "folder-kanban-done": {
+      "iconPath": "./icons/folders/folder-kanban-done.svg"
+    }
+  },
+  "fileExtensions": {},
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "kanban": "folder-kanban",
+    "1-backlog": "folder-kanban-backlog",
+    "2-todo": "folder-kanban-todo",
+    "3-inprogress": "folder-kanban-inprogress",
+    "4-review": "folder-kanban-review",
+    "5-done": "folder-kanban-done"
+  }
+}
