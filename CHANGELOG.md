@@ -1,3 +1,8 @@
+## v0.10.0 (2026-09-19)
+
+- add kanban colors
+- add agents icon on mcp folders
+
 ## v0.9.2 (2026-09-07)
 
 - update readme
