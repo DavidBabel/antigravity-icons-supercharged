@@ -1,3 +1,7 @@
+## v0.10.1 (2026-09-19)
+
+- fix kanban icon, clean comments and metadata
+
 ## v0.10.0 (2026-09-19)
 
 - add kanban colors
