@@ -9,6 +9,9 @@
   "fileNames": {},
   "languageIds": {},
   "folderNames": {
-    "ts-config": "folder-config"
+    "ts-config": "folder-config",
+    "config": "folder-config",
+    "setting": "folder-config",
+    "settings": "folder-config"
   }
 }
