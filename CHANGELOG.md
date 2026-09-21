@@ -1,3 +1,7 @@
+## v1.0.0 (2026-09-21)
+
+- add tests icons
+
 ## v0.11.0 (2026-09-21)
 
 - turn rust icon yellow for better compat with svelte official color
