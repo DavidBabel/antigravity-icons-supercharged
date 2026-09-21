@@ -1,3 +1,9 @@
+## v1.0.1 (2026-09-21)
+
+- fix test folder icon
+- add more folder as settings
+- update packges & rename test icon
+
 ## v1.0.0 (2026-09-21)
 
 - add tests icons

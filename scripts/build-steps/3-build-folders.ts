@@ -98,7 +98,10 @@ async function processIcons() {
           file.replace(".svg", ""),
         ];
         for (const refName of refNames) {
-          generatedClosedIcons.push({ name: `${refName}-closed`, file: closedFileName });
+          generatedClosedIcons.push({
+            name: `${refName}-closed`,
+            file: closedFileName,
+          });
         }
       }
     } else {
