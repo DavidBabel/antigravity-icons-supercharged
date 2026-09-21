@@ -1,10 +1,10 @@
 {
   "iconDefinitions": {
+    "folder-tests-icon": {
+      "iconPath": "./icons/folders/folder-tests.svg"
+    },
     "tests-icon": {
       "iconPath": "./icons/files/tests.svg"
-    },
-    "tests-folder-icon": {
-      "iconPath": "./icons/folders/tests-folder.svg"
     }
   },
   "fileExtensions": {
@@ -20,12 +20,12 @@
   "fileNames": {},
   "languageIds": {},
   "folderNames": {
-    "e2e": "tests-folder-icon",
-    "fixture": "tests-folder-icon",
-    "fixtures": "tests-folder-icon",
-    "spec": "tests-folder-icon",
-    "specs": "tests-folder-icon",
-    "test": "tests-folder-icon",
-    "tests": "tests-folder-icon"
+    "e2e": "folder-tests-icon",
+    "fixture": "folder-tests-icon",
+    "fixtures": "folder-tests-icon",
+    "spec": "folder-tests-icon",
+    "specs": "folder-tests-icon",
+    "test": "folder-tests-icon",
+    "tests": "folder-tests-icon"
   }
 }
