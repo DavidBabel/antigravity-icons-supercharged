@@ -1,3 +1,7 @@
+## v1.0.2 (2026-09-21)
+
+- more folder pattern detection
+
 ## v1.0.1 (2026-09-21)
 
 - fix test folder icon
