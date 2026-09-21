@@ -29,8 +29,28 @@ if (!fs.existsSync(DEST_DIR)) {
 
 const DEST_JSON = "build-gray/symbol-icon-theme.json";
 
+// Maps a theme iconDefinition name (e.g. "folder-tests-icon") to the SVG
+// file it points at (e.g. "folder-tests.svg"). Needed because definition
+// names don't always match the SVG filename (override JSONs may use
+// "-icon" suffixed names), so closed definitions must be derived from the
+// definition names actually used in folderNames / folderNamesExpanded.
+function buildDefinitionNameMap(theme: {
+  iconDefinitions?: Record<string, { iconPath: string }>;
+}): Map<string, string[]> {
+  const map = new Map<string, string[]>();
+  for (const [name, def] of Object.entries(theme.iconDefinitions ?? {})) {
+    const iconPath = def?.iconPath;
+    if (!iconPath || !iconPath.startsWith("./icons/folders/")) continue;
+    const file = path.basename(iconPath);
+    const refs = map.get(file);
+    if (refs) refs.push(name);
+    else map.set(file, [name]);
+  }
+  return map;
+}
+
 async function processIcons() {
-  const generatedClosedIcons: string[] = [];
+  const generatedClosedIcons: { name: string; file: string }[] = [];
 
   // Iterate over files already in the DEST_DIR (collected by build-json or copied previously)
   if (!fs.existsSync(DEST_DIR)) return;
@@ -50,6 +70,13 @@ async function processIcons() {
     }
   }
 
+  // Map SVG filenames to the definition names the theme uses for them
+  const definitionNamesByFile = buildDefinitionNameMap(
+    fs.existsSync(DEST_JSON)
+      ? JSON.parse(fs.readFileSync(DEST_JSON, "utf8"))
+      : {},
+  );
+
   const files = fs
     .readdirSync(DEST_DIR)
     .filter((file) => file.endsWith(".svg") && !file.endsWith("-closed.svg"));
@@ -61,11 +88,18 @@ async function processIcons() {
     // Generate Closed Variant
     // Only if it looks like a folder icon (contains the base folder path definition)
     if (FOLDER_PATHS_D.some((d) => content.includes(d))) {
-      const closedName = file.replace(".svg", "-closed.svg");
+      const closedFileName = file.replace(".svg", "-closed.svg");
       const closedContent = generateClosedVariant(content);
       if (closedContent) {
-        fs.writeFileSync(path.join(DEST_DIR, closedName), closedContent);
-        generatedClosedIcons.push(closedName.replace(".svg", ""));
+        fs.writeFileSync(path.join(DEST_DIR, closedFileName), closedContent);
+        // Register one closed definition per theme name referencing this SVG;
+        // fall back to the file-based name when nothing references it.
+        const refNames = definitionNamesByFile.get(file) ?? [
+          file.replace(".svg", ""),
+        ];
+        for (const refName of refNames) {
+          generatedClosedIcons.push({ name: `${refName}-closed`, file: closedFileName });
+        }
       }
     } else {
       console.warn(
@@ -79,13 +113,13 @@ async function processIcons() {
   }
 }
 
-function updateThemeJson(closedIcons: string[]) {
+function updateThemeJson(closedIcons: { name: string; file: string }[]) {
   const theme = JSON.parse(fs.readFileSync(DEST_JSON, "utf8"));
 
   // 1. Add iconDefinitions
-  for (const icon of closedIcons) {
-    theme.iconDefinitions[icon] = {
-      iconPath: `./icons/folders/${icon}.svg`,
+  for (const { name, file } of closedIcons) {
+    theme.iconDefinitions[name] = {
+      iconPath: `./icons/folders/${file}`,
     };
   }
 
