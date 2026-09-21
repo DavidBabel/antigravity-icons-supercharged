@@ -1,0 +1,31 @@
+{
+  "iconDefinitions": {
+    "tests-icon": {
+      "iconPath": "./icons/files/tests.svg"
+    },
+    "tests-folder-icon": {
+      "iconPath": "./icons/folders/tests-folder.svg"
+    }
+  },
+  "fileExtensions": {
+    "test.js": "tests-icon",
+    "tests.js": "tests-icon",
+    "spec.js": "tests-icon",
+    "specs.js": "tests-icon",
+    "test.ts": "tests-icon",
+    "tests.ts": "tests-icon",
+    "spec.ts": "tests-icon",
+    "specs.ts": "tests-icon"
+  },
+  "fileNames": {},
+  "languageIds": {},
+  "folderNames": {
+    "e2e": "tests-folder-icon",
+    "fixture": "tests-folder-icon",
+    "fixtures": "tests-folder-icon",
+    "spec": "tests-folder-icon",
+    "specs": "tests-folder-icon",
+    "test": "tests-folder-icon",
+    "tests": "tests-folder-icon"
+  }
+}
