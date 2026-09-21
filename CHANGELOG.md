@@ -1,3 +1,7 @@
+## v0.11.0 (2026-09-21)
+
+- turn rust icon yellow for better compat with svelte official color
+
 ## v0.10.1 (2026-09-19)
 
 - fix kanban icon, clean comments and metadata
