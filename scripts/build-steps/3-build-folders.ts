@@ -42,7 +42,7 @@ function buildDefinitionNameMap(theme: {
   const map = new Map<string, string[]>();
   for (const [name, def] of Object.entries(theme.iconDefinitions ?? {})) {
     const iconPath = def?.iconPath;
-    if (!iconPath || !iconPath.startsWith("./icons/folders/")) continue;
+    if (!iconPath?.startsWith("./icons/folders/")) continue;
     const file = path.basename(iconPath);
     const refs = map.get(file);
     if (refs) refs.push(name);
