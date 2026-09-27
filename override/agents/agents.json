@@ -4,7 +4,10 @@
       "iconPath": "./icons/folders/folder-agents.svg"
     }
   },
-  "fileExtensions": {},
+  "fileExtensions": {
+    ".agents.md": "robot",
+    ".agent.md": "robot"
+  },
   "fileNames": {
     ".ai.md": "robot",
     ".copilot-instructions": "robot",
