@@ -1,3 +1,8 @@
+## v1.0.3 (2026-09-27)
+
+- add agent.md files
+- add git keep
+
 ## v1.0.2 (2026-09-21)
 
 - more folder pattern detection
