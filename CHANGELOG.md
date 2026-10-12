@@ -1,3 +1,7 @@
+## v1.0.6 (2026-10-12)
+
+
+
 ## v1.0.5 (2026-10-12)
 
 - add agentignore & smaller icons
