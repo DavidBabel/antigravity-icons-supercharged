@@ -2,6 +2,9 @@
   "iconDefinitions": {
     "folder-agents": {
       "iconPath": "./icons/folders/folder-agents.svg"
+    },
+    "robot-red": {
+      "iconPath": "./icons/files/robot-red.svg"
     }
   },
   "fileExtensions": {
@@ -9,6 +12,8 @@
     ".agent.md": "robot"
   },
   "fileNames": {
+    ".agentignore": "robot-red",
+    ".agentsignore": "robot-red",
     ".ai.md": "robot",
     ".copilot-instructions": "robot",
     ".env.ai": "robot",
